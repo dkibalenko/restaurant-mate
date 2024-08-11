@@ -3,4 +3,4 @@ from django.http import HttpRequest, HttpResponse
 
 
 def index(request: HttpRequest) -> HttpResponse:
-    pass
+    return render(request, "kitchen/index.html")
