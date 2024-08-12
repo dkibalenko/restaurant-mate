@@ -40,9 +40,7 @@ class Cook(AbstractUser):
 
 class Ingredient(models.Model):
     name = models.CharField(max_length=63)
-    description = models.TextField()
-    quantity = models.DecimalField(max_digits=6, decimal_places=2)
-    unit = models.CharField(max_length=20)
+    description = models.TextField(null=True, blank=True)
 
     def __str__(self) -> str:
         return self.name
@@ -54,7 +52,7 @@ class Dish(models.Model):
     price = models.DecimalField(
         max_digits=9,
         decimal_places=2,
-        validators=[DecimalValidator]
+        validators=[DecimalValidator(max_digits=9, decimal_places=2)]
     )
     dish_type = models.ForeignKey(
         DishType,
@@ -73,6 +71,9 @@ class Dish(models.Model):
     image = models.ImageField(upload_to="dish_images", blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name_plural = "dishes"
 
     def __str__(self) -> str:
         return self.name

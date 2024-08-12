@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
 	Kitchen Management System
@@ -15,18 +16,18 @@
   </section>
 
   <section>
-    <h2>Our latest dishes</h2>
-    <ul>
-      <li>Dish picture and details</li>
-      <li>Dish picture and details</li>
-      <li>Dish picture and details</li>
-    </ul>
+    <h2>Our Cooks</h2>
+    {% for cook in cooks %}
+      <ul>
+        <li><img src="{{ cook.profile_picture.url }}" alt=""></li>
+      </ul>
+    {% endfor %}
   </section>
 
   <section>
     <h2>What We Do</h2>
     <p>Our goal is to make complex things trivial.</p>
-    <p>We cook with fun and manage the process with ease.</p>
+    <p>We cook with fun and manage with ease.</p>
   </section>
 
 {% endblock %}
