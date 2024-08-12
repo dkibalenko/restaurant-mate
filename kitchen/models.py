@@ -22,7 +22,8 @@ class DishType(models.Model):
 class Cook(AbstractUser):
     bio = models.TextField(blank=True, null=True)
     years_of_experience = models.IntegerField(
-        validators=[MinValueValidator(0), MaxValueValidator(50)]
+        validators=[MinValueValidator(0), MaxValueValidator(50)],
+        default=0
     )
     profile_picture = models.ImageField(
         upload_to="profile_images", 
