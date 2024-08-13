@@ -6,28 +6,32 @@
 {% endblock %}
 
 {% block css_files %}
+  <link rel="stylesheet" href="{% static "kitchen/dish.css" %}">
+  <link rel="stylesheet" href="{% static "kitchen/index.css" %}">
 {% endblock %}
 
 {% block content %}
-	<section>
+	<section id="welcome">
     <header>
-      <h2>Welcome to Dennie's Restaurant Kitchen Management System!</h2>
-    </head>
+      <img src="{% static "kitchen/images/restaurant-logo2.jpeg" %}" alt="Dennie - The Owner of the Restaurant">
+      <h2>Dennie's Restaurant</h2>
+    </header>
+    <p>Welcome to Dennie's Restaurant Kitchen Management System!</p>
   </section>
 
-  <section>
-    <h2>Our Cooks</h2>
-    {% for cook in cooks %}
+  <section id="latest-dishes">
+    <h2>Our Latest Dishes</h2>
       <ul>
-        <li><img src="{{ cook.profile_picture.url }}" alt=""></li>
+        {% for dish in dishes %}
+          {% include "kitchen/includes/dish.html" %}
+        {% endfor %}
       </ul>
-    {% endfor %}
   </section>
 
-  <section>
+  <section id="about">
     <h2>What We Do</h2>
-    <p>Our goal is to make complex things trivial.</p>
-    <p>We cook with fun and manage with ease.</p>
+    <p>Having fun when cooking.</p>
+    <p>We cook with fun and manage it with ease.</p>
   </section>
 
 {% endblock %}
