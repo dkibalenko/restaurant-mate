@@ -31,14 +31,13 @@
   margin: 0.25rem 0;
 }
 
-.dish time {
-  color: #666666;
-  margin: 0.25rem;
-  font-style: italic;
-  font-size: 0.85rem;
+#latest-dishes .dish ul {
+  list-style: none;
+  padding-left: 20px;
+  text-align: left;
+  display: block;
 }
 
-.dish:hover time,
-.dish:active time {
-  color: white;
+#latest-dishes .dish ul li {
+  margin-bottom: 0.5rem;
 }
