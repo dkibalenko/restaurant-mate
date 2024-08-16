@@ -10,9 +10,10 @@
 
 {% block content %}
   <section id="summary">
-    <h2>{{ cook.name }}</h2>
+    <h2>{{ cook.full_name }}</h2>
     <article>
-        <img src="{{ cook.profile_picture.url }}" alt="Cook Name">
+        <img src="{{ cook.profile_picture.url }}" alt="{{ cook.full_name }}">
+        <address>Write me <a href="mailto:{{ cook.email }}"> {{ cook.full_name|title }}</a></address>
     </article>
   </section>
 

@@ -33,6 +33,9 @@ class Cook(AbstractUser):
     )
     slug = models.SlugField(unique=True, blank=True, db_index=True)
 
+    def full_name(self):
+        return f"{self.first_name} {self.last_name}"
+
     class Meta:
         ordering = ("username",)
 
