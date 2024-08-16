@@ -14,3 +14,9 @@ class CookListView(ListView):
     template_name = "kitchen/all_cooks.html"
     model = Cook
     context_object_name = "cooks"
+
+
+class CookDetailView(DetailView):
+    template_name = "kitchen/cook_detail.html"
+    model = Cook
+    context_object_name = "cook"

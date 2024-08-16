@@ -15,7 +15,7 @@
     <h2>Cooks</h2>
     <div class="cook-cards">
       {% for cook in cooks %}
-        <a href="" class="cook-card">
+        <a href="{% url "kitchen:cook-detail-page" cook.slug %}" class="cook-card">
           {% include "kitchen/includes/cook_preview.html" %}
         </a>
       {% endfor %}

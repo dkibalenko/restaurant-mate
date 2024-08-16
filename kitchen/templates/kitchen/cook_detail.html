@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  Cook
+{% endblock %}
+
+{% block css_files %}
+{% endblock css_files %}
+
+{% block content %}
+  <section id="summary">
+    <h2>{{ cook.name }}</h2>
+    <article>
+        <img src="{{ cook.profile_picture.url }}" alt="Cook Name">
+    </article>
+  </section>
+
+  <main>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae nostrum perferendis ex, nisi, soluta praesentium magni, id quaerat vel unde reiciendis. Ut atque perspiciatis, veritatis delectus eveniet amet libero dolorem.</p>
+  </main>
+{% endblock content %}

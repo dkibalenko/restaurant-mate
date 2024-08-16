@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.utils.text import slugify
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import (
     MinValueValidator,
@@ -30,12 +31,18 @@ class Cook(AbstractUser):
         blank=True, 
         null=True
     )
+    slug = models.SlugField(unique=True, blank=True, db_index=True)
 
     class Meta:
         ordering = ("username",)
 
     def __str__(self) -> str:
         return f"{self.username}: ({self.first_name} {self.last_name})"
+    
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(f"{self.first_name}-{self.last_name}")
+        super().save(*args, **kwargs)
 
 
 class Ingredient(models.Model):
