@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  Cooks
+{% endblock %}
+
+{% block css_files %}
+  <link rel="stylesheet" href="{% static "kitchen/cook_preview.css" %}">
+  <link rel="stylesheet" href="{% static "kitchen/all_cooks.css" %}">
+{% endblock %}
+
+{% block content %}
+  <section id="all-cooks">
+    <h2>Cooks</h2>
+    <div class="cook-cards">
+      {% for cook in cooks %}
+        <a href="" class="cook-card">
+          {% include "kitchen/includes/cook_preview.html" %}
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

@@ -31,6 +31,19 @@
   margin: 0.25rem 0;
 }
 
+.dish time {
+  color: #666666;
+  margin: 0.25rem;
+  font-style: italic;
+  font-size: 0.85rem;
+}
+
+.dish:hover time,
+.dish:active time {
+  color: white;
+}
+
+
 #latest-dishes .dish ul {
   list-style: none;
   padding-left: 20px;

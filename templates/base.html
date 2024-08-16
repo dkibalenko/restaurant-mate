@@ -17,10 +17,10 @@
 
 <body>
   <header id="main-navigation">
-    <h2><a href="">Home</a></h2>
+    <h2><a href="{% url "kitchen:main-page" %}">Home</a></h2>
     <nav>
       <a href="">Login</a>
-      <a href="">Cooks</a>
+      <a href="{% url "kitchen:cooks-page" %}">Cooks</a>
       <a href="">Dishes</a>
       <a href="">Dish Types</a>
       <a href="">Ingredients</a>

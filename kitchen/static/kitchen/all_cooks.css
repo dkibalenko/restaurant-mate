@@ -1,0 +1,65 @@
+body {
+  background-color: #e7e7e7;
+}
+
+#main-navigation {
+  background-color: #390281;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+#all-cooks {
+  margin: 7rem auto;
+  width: 70%; /* Adjust to 70% of the viewport */
+}
+
+#all-cooks h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #2e2e2e;
+  margin: 3rem 0;
+}
+
+.cook-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+  gap: 1.5rem;
+}
+
+.cook-card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+  background-color: white;
+  padding: 2rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  text-decoration: none; /* Ensure links have no underline */
+  color: black; /* Ensure text color is black */
+  transition: all 0.2s ease;
+}
+
+.cook-card:hover,
+.cook-card:active {
+  transform: scale(1.05);
+  background-color: #390281;
+  color: white;
+}
+
+.cook-card img {
+  width: 200px; /* Reasonable size for profile picture */
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8%;
+  margin-bottom: 1rem;
+}
+
+.cook-card h3 {
+  margin: 0.5rem 0;
+}
+
+.cook-card p {
+  margin: 0.5rem 0;
+  word-wrap: break-word; /* Ensure text wraps within the card */
+}

@@ -7,7 +7,7 @@
 
 {% block css_files %}
   <link rel="stylesheet" href="{% static "kitchen/index.css" %}">
-  <link rel="stylesheet" href="{% static "kitchen/dish.css" %}">
+  <link rel="stylesheet" href="{% static "kitchen/dish_preview.css" %}">
 {% endblock %}
 
 {% block content %}
@@ -23,7 +23,7 @@
     <h2>Our Latest Dishes</h2>
       <ul>
         {% for dish in dishes %}
-          {% include "kitchen/includes/dish.html" %}
+          {% include "kitchen/includes/dish_preview.html" %}
         {% endfor %}
       </ul>
   </section>
