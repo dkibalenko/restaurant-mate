@@ -8,6 +8,7 @@
 {% block css_files %}
   <link rel="stylesheet" href="{% static "kitchen/cook_preview.css" %}">
   <link rel="stylesheet" href="{% static "kitchen/all_cooks.css" %}">
+  <link rel="stylesheet" href="{% static "kitchen/pagination.css" %}">
 {% endblock %}
 
 {% block content %}
@@ -22,3 +23,7 @@
     </div>
   </section>
 {% endblock %}
+
+{% block pagination %}
+  {% include "kitchen/includes/pagination.html" %}
+{% endblock pagination %}

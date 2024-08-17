@@ -14,6 +14,7 @@ class CookListView(ListView):
     template_name = "kitchen/all_cooks.html"
     model = Cook
     context_object_name = "cooks"
+    paginate_by = 3
 
 
 class CookDetailView(DetailView):
