@@ -2,22 +2,44 @@
 {% load static %}
 
 {% block title %}
-  Cook
+  {{ cook.full_name }}
 {% endblock %}
 
 {% block css_files %}
+  <link rel="stylesheet" href="{% static "kitchen/cook_detail.css" %}">
 {% endblock css_files %}
 
 {% block content %}
   <section id="summary">
-    <h2>{{ cook.full_name }}</h2>
+    <h3>{{ cook.full_name }}</h3>
+    <div id="bio">
+      <p><strong>Bio:</strong></p>
+      <p>{{ cook.bio }}</p>
+      <p><strong>Years of Experience:</strong> {{ cook.years_of_experience }}</p>
+    </div>
     <article>
         <img src="{{ cook.profile_picture.url }}" alt="{{ cook.full_name }}">
-        <address>Write me <a href="mailto:{{ cook.email }}"> {{ cook.full_name|title }}</a></address>
+        <address>Email: <a href="mailto:{{ cook.email }}">{{ cook.email }}</a></address>
     </article>
   </section>
 
   <main>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae nostrum perferendis ex, nisi, soluta praesentium magni, id quaerat vel unde reiciendis. Ut atque perspiciatis, veritatis delectus eveniet amet libero dolorem.</p>
+    <section id="dishes">
+      <h3>Dishes by {{ cook.full_name }}</h3>
+      <ul>
+        {% for dish in cook.dishes.all %}
+          <li>
+            <article class="dish">
+              <img src="{{ dish.image.url }}" alt="{{ dish.name }}">
+              <div class="dish__content">
+                <h4>{{ dish.name }}</h4>
+                <p>{{ dish.description }}</p>
+                <p><strong>Price:</strong> ${{ dish.price }}</p>
+              </div>
+            </article>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
   </main>
 {% endblock content %}
