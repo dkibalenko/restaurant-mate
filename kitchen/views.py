@@ -16,7 +16,7 @@ def index(request: HttpRequest) -> HttpResponse:
 def custom_logout_view(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
         logout(request)
-        return redirect("kitchen:main-page")
+        return redirect("login")
     return render(request, "registration/logged_out.html")
 
 
