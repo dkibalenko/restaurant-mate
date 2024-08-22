@@ -49,23 +49,7 @@ h3 {
 }
 
 #main-navigation .user-info {
-  display: inline;
   align-items: left;
   color: white;
   font-weight: bold;
 }
-/* 
-#main-navigation .user-info span {
-  margin-right: 1rem;
-}
-
-#main-navigation .user-info a {
-  margin-left: 0;
-  margin-right: 1rem;
-  color: white;
-}
-
-#main-navigation .user-info a:hover,
-#main-navigation .user-info a:active {
-  color: #cf79f1;
-} */
