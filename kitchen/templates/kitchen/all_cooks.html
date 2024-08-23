@@ -13,7 +13,12 @@
 
 {% block content %}
   <section id="all-cooks">
-    <h2>Cooks</h2>
+    <div class="header">
+      <h2>Cooks</h2>
+      <a href="{% url "kitchen:cook-create" %}" class="btn-create">
+        Create
+      </a>
+    </div>
     <div class="cook-cards">
       {% for cook in cooks %}
         <a href="{% url "kitchen:cook-detail-page" cook.slug %}" class="cook-card">

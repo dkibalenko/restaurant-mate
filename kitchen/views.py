@@ -4,8 +4,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
 from django.views import generic
+from django.urls import reverse_lazy
+
 
 from .models import Dish, Cook
+from .forms import CookCreationForm
+
 
 @login_required
 def index(request: HttpRequest) -> HttpResponse:
@@ -31,3 +35,10 @@ class CookDetailView(LoginRequiredMixin, generic.DetailView):
     template_name = "kitchen/cook_detail.html"
     model = Cook
     context_object_name = "cook"
+
+
+class CookCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Cook
+    template_name = "kitchen/cook_form.html"
+    form_class = CookCreationForm
+    success_url = reverse_lazy("kitchen:cooks-page")
