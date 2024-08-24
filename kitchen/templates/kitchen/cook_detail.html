@@ -24,7 +24,7 @@
       <img src="{{ cook.profile_picture.url }}" alt="{{ cook.full_name }}">
       <div class="actions">
         <a id="update-cook" href="{% url "kitchen:cook-update" cook.slug %}" class="btn">Update</a>
-        {% comment %} <a id="delete-cook" href="{% url "kitchen:cook-delete" cook.slug %}" class="btn btn-delete">Delete</a> {% endcomment %}
+        <a id="delete-cook" href="{% url "kitchen:cook-delete" cook.slug %}" class="btn btn-delete">Delete</a>
       </div>
     </article>
   </section>

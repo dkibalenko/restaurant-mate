@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  Delete Cook
+{% endblock %}
+
+{% block css_files %}
+  <link rel="stylesheet" href="{% static "kitchen/cook_confirm_delete.css" %}">
+{% endblock css_files %}
+
+{% block content %}
+  <section id="delete-confirmation">
+    <h1>Delete Cook?</h1>
+    <p>Are you sure you want to delete this cook? This action cannot be undone.</p>
+    <form action="" method="post">
+      {% csrf_token %}
+      <div class="form-actions">
+        <input type="submit" value="Yes" class="btn btn-delete">
+        <button type="button" onclick="history.back();" class="btn btn-cancel">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </section>
+{% endblock content %}
