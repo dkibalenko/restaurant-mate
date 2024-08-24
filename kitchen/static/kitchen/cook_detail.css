@@ -119,16 +119,3 @@ main {
   width: 100%;
   height: auto;
 }
-
-.dish__content {
-  padding: 1rem;
-}
-
-.dish__content h4 {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.dish__content p {
-  margin: 0.5rem 0;
-}

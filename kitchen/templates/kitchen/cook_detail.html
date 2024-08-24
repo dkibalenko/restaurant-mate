@@ -17,7 +17,7 @@
       <p><strong>Years of Experience:</strong> {{ cook.years_of_experience }}</p>
       <address><strong>Email: </strong><a href="mailto:{{ cook.email }}">{{ cook.email }}</a></address>
       <p><strong>Bio:</strong></p>
-      <p>{{ cook.bio }}</p>
+      <p>{{ cook.bio|linebreaks }}</p>
       
     </div>
     <article>
@@ -37,13 +37,15 @@
           <li>
             <article class="dish">
               <img src="{{ dish.image.url }}" alt="{{ dish.name }}">
-              <div class="dish__content">
+              <div>
                 <h4>{{ dish.name }}</h4>
                 <p>{{ dish.description }}</p>
                 <p><strong>Price:</strong> ${{ dish.price }}</p>
               </div>
             </article>
           </li>
+        {% empty %}
+          <p>No dishes found.</p>
         {% endfor %}
       </ul>
     </section>

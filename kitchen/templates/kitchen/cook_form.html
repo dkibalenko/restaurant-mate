@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-  Create Cook
+  {{ object|yesno:"Update,Create" }} Cook
 {% endblock %}
 
 {% block css_files %}
@@ -11,13 +11,13 @@
 
 {% block content %}
   <section id="cook-form-section">
-    <h2>Create Cook</h2>
+    <h2>{{ object|yesno:"Update,Create" }} Cook</h2>
     <form method="post" enctype="multipart/form-data" class="cook-form" novalidate>
       {% csrf_token %}
       {{ form.as_p }}
       <div class="form-actions">
-        <button type="submit" class="btn">Save</button>
-        <a href="{% url 'kitchen:cooks-page' %}" class="btn btn-cancel">Cancel</a>
+        <button type="submit" class="btn">{{ object|yesno:"Update,Create" }}</button>
+        <button type="button" onclick="history.back();" class="btn btn-cancel">Cancel</button>
       </div>
     </form>
   </section>
