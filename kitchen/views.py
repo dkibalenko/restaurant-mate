@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 
 
 from .models import Dish, Cook
-from .forms import CookCreationForm
+from .forms import CookCreationForm, CookUpdateForm
 
 
 @login_required
@@ -41,4 +41,11 @@ class CookCreateView(LoginRequiredMixin, generic.CreateView):
     model = Cook
     template_name = "kitchen/cook_form.html"
     form_class = CookCreationForm
+    success_url = reverse_lazy("kitchen:cooks-page")
+
+
+class CookUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Cook
+    template_name = "kitchen/cook_form_update.html"
+    form_class = CookUpdateForm
     success_url = reverse_lazy("kitchen:cooks-page")

@@ -7,19 +7,25 @@
 
 {% block css_files %}
   <link rel="stylesheet" href="{% static "kitchen/cook_detail.css" %}">
-{% endblock css_files %}
+{% endblock %}
 
 {% block content %}
   <section id="summary">
-    <h3>{{ cook.full_name }}</h3>
-    <div id="bio">
+    <div class="cook-details">
+      <h3>{{ cook.full_name }}</h3>
+      <p><strong>Username:</strong> {{ cook.username }}</p>
+      <p><strong>Years of Experience:</strong> {{ cook.years_of_experience }}</p>
+      <address><strong>Email: </strong><a href="mailto:{{ cook.email }}">{{ cook.email }}</a></address>
       <p><strong>Bio:</strong></p>
       <p>{{ cook.bio }}</p>
-      <p><strong>Years of Experience:</strong> {{ cook.years_of_experience }}</p>
+      
     </div>
     <article>
-        <img src="{{ cook.profile_picture.url }}" alt="{{ cook.full_name }}">
-        <address>Email me to: <a href="mailto:{{ cook.email }}">{{ cook.email }}</a></address>
+      <img src="{{ cook.profile_picture.url }}" alt="{{ cook.full_name }}">
+      <div class="actions">
+        <a id="update-cook" href="{% url "kitchen:cook-update" cook.slug %}" class="btn">Update</a>
+        {% comment %} <a id="delete-cook" href="{% url "kitchen:cook-delete" cook.slug %}" class="btn btn-delete">Delete</a> {% endcomment %}
+      </div>
     </article>
   </section>
 
@@ -42,4 +48,4 @@
       </ul>
     </section>
   </main>
-{% endblock content %}
+{% endblock %}

@@ -1,14 +1,8 @@
-body {
-  background-color: #e7e7e7;
-}
-
-#main-navigation {
-  background-color: #390281;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-}
-
 #summary {
-  margin: 8rem auto 3rem auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 8rem auto 1rem auto;
   padding: 2rem;
   width: 70%;
   max-width: 90rem;
@@ -16,44 +10,68 @@ body {
   background-color: #5706c0;
   position: relative;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-  height: 20rem;
 }
 
-#bio {
+.cook-details {
   color: white;
+  flex: 1;
 }
 
-#summary h3 {
-  color: white;
-  font-size: 4.5rem;
-  margin-bottom: 0.25rem;
-}
-
-#summary article {
-  position: absolute;
-  top: 2rem;
-  right: 3rem;
-  padding: 1rem 2rem;
-  border-radius: 12px;
-  text-align: right;
-  color: white;
-}
-
-#summary article img {
-  width: 10rem;
-  height: 12rem;
-  border-radius: 12px;
-  border: 5px solid white;
+.cook-details h3 {
+  font-size: 2.5rem;
   margin-bottom: 1rem;
 }
 
-#summary address {
-  font-weight: bold;
-}
-
-#summary a {
+.cook-details p,
+.cook-details address {
+  margin: 0.5rem 0;
   color: white;
   text-decoration: none;
+  font-style: normal;
+}
+
+.cook-details address a {
+  text-decoration: none;
+  color: white;
+}
+
+.actions {
+  margin-top: 1rem;
+}
+
+.actions .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  /* margin-right: 10px; */
+}
+
+.actions .btn:hover {
+  background-color: #45a049;
+}
+
+.actions .btn-delete {
+  background-color: #d9534f;
+}
+
+.actions .btn-delete:hover {
+  background-color: #c9302c;
+}
+
+#summary article {
+  flex-shrink: 0;
+  padding: 0;
+  text-align: right;
+}
+
+#summary article img {
+  width: 15rem;
+  height: auto;
+  border-radius: 12px;
+  border: 5px solid white;
+  margin-bottom: 1rem;
 }
 
 main {
