@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.validators import FileExtensionValidator
 
 from .models import Cook
+from .mixins import RequiredFieldsMixin
 
 
 def profile_picture_extension_validator():
@@ -19,7 +20,6 @@ def profile_picture_extension_validator():
         validator and widget.
     """
     profile_picture = forms.ImageField(
-        required=False,
         validators=[
             FileExtensionValidator(
                 allowed_extensions=["jpg", "png", "jpeg"]
@@ -31,8 +31,9 @@ def profile_picture_extension_validator():
     return profile_picture
 
 
-class CookCreationForm(UserCreationForm):
+class CookCreationForm(RequiredFieldsMixin, UserCreationForm):
     profile_picture = profile_picture_extension_validator()
+    required_fields = ["first_name", "last_name"]
     
     class Meta(UserCreationForm.Meta):
         model = Cook
@@ -45,8 +46,9 @@ class CookCreationForm(UserCreationForm):
         )
 
 
-class CookUpdateForm(forms.ModelForm):
+class CookUpdateForm(RequiredFieldsMixin, forms.ModelForm):
     profile_picture = profile_picture_extension_validator()
+    required_fields = ["first_name", "last_name"]
     class Meta:
         model = Cook
         fields = (

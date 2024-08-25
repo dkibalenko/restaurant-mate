@@ -27,9 +27,7 @@ class Cook(AbstractUser):
         default=0
     )
     profile_picture = models.ImageField(
-        upload_to="profile_images", 
-        blank=True, 
-        null=True
+        upload_to="profile_images",
     )
     slug = models.SlugField(unique=True, blank=True, db_index=True)
 
