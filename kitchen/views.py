@@ -62,3 +62,10 @@ class DishListView(LoginRequiredMixin, generic.ListView):
     template_name = "kitchen/dishes_list.html"
     context_object_name = "dishes"
     paginate_by = 3
+
+
+class DishDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Dish
+    template_name = "kitchen/dish_detail.html"
+    context_object_name = "dish"
+    

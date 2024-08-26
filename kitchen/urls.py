@@ -10,6 +10,7 @@ urlpatterns = [
     path("cooks/<slug:slug>/update/", views.CookUpdateView.as_view(), name="cook-update"),
     path("cooks/<slug:slug>/delete/", views.CookDeleteView.as_view(), name="cook-delete"),
     path("dishes/", views.DishListView.as_view(), name="dishes-page"),
+    path("dishes/<int:pk>/", views.DishDetailView.as_view(), name="dish-detail-page"),
 ]
 
 app_name="kitchen"

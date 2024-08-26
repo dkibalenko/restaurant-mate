@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.utils.text import slugify
 from django.contrib.auth.models import AbstractUser
+from django.urls import reverse
 from django.core.validators import (
     MinValueValidator,
     MaxValueValidator,
@@ -88,6 +89,9 @@ class Dish(models.Model):
 
     def __str__(self) -> str:
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse("kitchen:dish-detail-page", kwargs={"pk": self.pk})
 
 
 class DishIngredient(models.Model):

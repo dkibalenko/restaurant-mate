@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  {{ dish.name }}
+{% endblock %}
+
+{% block css_files %}
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <h1>{{ dish.name }}</h1>
+        {% if dish.image %}
+          <img src="{{ dish.image.url }}" class="img-fluid" alt="{{ dish.name }}">
+        {% endif %}
+        <p>{{ dish.description }}</p>
+        <p><strong>Price:</strong> ${{ dish.price }}</p>
+        <p><strong>Type:</strong> {{ dish.dish_type.name }}</p>
+        <p><strong>Cooks:</strong>
+          {% for cook in dish.cooks.all %}
+            {{ cook.full_name }}{% if not forloop.last %}, {% endif %}
+          {% endfor %}
+        </p>
+        <h3>Ingredients</h3>
+        <ul class="list-group">
+          {% for dish_ingredient in dish.dishingredient_set.all %}
+            <li class="list-group-item">
+              {{ dish_ingredient.ingredient.name }}: {{ dish_ingredient.quantity }} {{ dish_ingredient.unit }}
+            </li>
+            {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endblock %}
