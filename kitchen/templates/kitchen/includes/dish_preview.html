@@ -2,9 +2,13 @@
   <article class="dish">
     <a href="">
       <img src="{{ dish.image.url }}" alt="{{ dish.name }}">
-      <div class="dish__content">
+      <div>
         <h3>{{ dish.name }}</h3>
-        <p><strong>Description:</strong> {{ dish.description }}</p>
+        <p><strong>Ingredients:</strong>
+          {% for dish_ingredient in dish.dishingredient_set.all %}
+            {{ dish_ingredient.ingredient.name }}: {{ dish_ingredient.quantity }} {{ dish_ingredient.unit }}
+          {% endfor %}
+        </p>  
         <p><strong>Price:</strong> {{ dish.price }}</p>
       </div>
     </a>
