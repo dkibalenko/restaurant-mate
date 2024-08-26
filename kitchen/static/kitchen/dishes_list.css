@@ -2,12 +2,12 @@ body {
   background-color: #e7e7e7;
 }
 
-#all-cooks {
+#all-dishes {
   margin: 7rem auto;
   width: 70%; /* Adjust to 70% of the viewport */
 }
 
-#all-cooks h2 {
+#all-dishes h2 {
   padding: 20px;
 
   /* text-align: center;
@@ -39,20 +39,20 @@ body {
   background-color: #45a049;
 }
 
-.cook-cards {
+.dish-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
   gap: 1.5rem;
 }
 
 /* alternative style
-.cook-cards {
+.dish-cards {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
 } */
 
-.cook-card {
+.dish-card {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   border-radius: 12px;
   background-color: white;
@@ -67,14 +67,14 @@ body {
   transition: all 0.2s ease;
 }
 
-.cook-card:hover,
-.cook-card:active {
+.dish-card:hover,
+.dish-card:active {
   transform: scale(1.05);
   background-color: #390281;
   color: white;
 }
 
-.cook-card img {
+.dish-card img {
   width: 200px;
   height: 200px;
   object-fit: cover;
@@ -82,11 +82,11 @@ body {
   margin-bottom: 1rem;
 }
 
-.cook-card h3 {
+.dish-card h3 {
   margin: 0.5rem 0;
 }
 
-.cook-card p {
+.dish-card p {
   margin: 0.5rem 0;
   word-wrap: break-word; /* Ensure text wraps within the card */
 }

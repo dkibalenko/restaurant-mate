@@ -6,23 +6,24 @@
 {% endblock %}
 
 {% block css_files %}
+  <link rel="stylesheet" href="{% static "kitchen/dishes_list.css" %}">
   <link rel="stylesheet" href="{% static "kitchen/pagination.css" %}">
 {% endblock %}
 
 {% block content %}
   <section id="all-dishes">
     <div class="header">
-      <h1>Dishes</h1>
-      {% comment %} <a href="{% url 'kitchen:dish-create' %}" class="btn-create">
+      <h2>Dishes</h2>
+      <a href="" class="btn-create">
         Create
-      </a> {% endcomment %}
+      </a>
     </div>
     <div class="dish-cards">
-        {% for dish in dishes %}
-          {% comment %} <a href="{% url 'kitchen:dish-detail-page' dish.id %}" class="dish-card"> {% endcomment %}
-            {% include "kitchen/includes/dish_preview.html" %}
-          </a>
-        {% endfor %}
+      {% for dish in dishes %}
+        <a href="" class="dish-card">
+          {% include "kitchen/includes/dish_card.html" %}
+        </a>
+      {% endfor %}
     </div>
   </section>
 {% endblock %}
