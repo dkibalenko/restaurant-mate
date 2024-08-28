@@ -1,6 +1,6 @@
 <li>
   <article class="dish">
-    <a href="">
+    <a href="{{ dish.get_absolute_url }}">
       <img src="{{ dish.image.url }}" alt="{{ dish.name }}">
       <div>
         <h3>{{ dish.name }}</h3>
