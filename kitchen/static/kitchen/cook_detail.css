@@ -126,7 +126,7 @@
   margin: 0.5rem 0;
 }
 
-.dish-cards p {
+#no-dishes {
   font-style: italic;
   font-size: 2rem;
 }
