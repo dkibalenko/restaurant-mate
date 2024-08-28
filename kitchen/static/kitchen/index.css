@@ -1,5 +1,7 @@
 #welcome {
-  background: linear-gradient(to right top, #6305dd, #390281);
+  background: url("images/restaurant4.jpg");
+  background-size: cover;
+  background-position: center;
   padding: 6rem 12%;
 }
 
@@ -10,8 +12,8 @@
 }
 
 #welcome img {
-  width: 10rem;
-  height: 10rem;
+  width: 8rem;
+  height: 8rem;
   object-fit: cover;
   object-position: top;
   border: 5px solid white;
@@ -22,10 +24,11 @@
 }
 
 #welcome h2 {
-  font-size: 3.5rem;
-  margin: 0 0 0 2rem;
+  font-size: 2.5rem;
+  margin: 1rem 0 0 2rem;
   color: white;
-  width: 10rem;
+  /* mix-blend-mode: difference; */
+  width: 30rem;
 }
 
 #welcome p {
@@ -34,8 +37,9 @@
 }
 
 #latest-dishes {
-  background-color: white;
+  background-color: #f5f3ec;
   padding: 2rem;
+  border: 5px solid #0C97AC;
   border-radius: 12px;
   width: 60rem;
   margin: -4rem auto 2rem auto;

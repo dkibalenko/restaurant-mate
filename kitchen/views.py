@@ -68,4 +68,3 @@ class DishDetailView(LoginRequiredMixin, generic.DetailView):
     model = Dish
     template_name = "kitchen/dish_detail.html"
     context_object_name = "dish"
-    

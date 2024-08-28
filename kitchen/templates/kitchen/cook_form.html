@@ -17,7 +17,7 @@
       {{ form.as_p }}
       <div class="form-actions">
         <button type="submit" class="btn">{{ object|yesno:"Update,Create" }}</button>
-        <a href="{% url "kitchen:cooks-page" %}" class="btn btn-cancel">Cancel</a>
+        <a href="{% url "kitchen:cook-detail-page" cook.slug %}" class="btn btn-cancel">Cancel</a>
       </div>
     </form>
   </section>

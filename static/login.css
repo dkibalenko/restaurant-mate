@@ -1,19 +1,16 @@
 body {
-  background-color: #e7e7e7;
-}
-
-#main-navigation {
-  background-color: #390281;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  margin: 0;
+  background-image: url("kitchen/images/restaurant5.jpg");
 }
 
 #login-section {
   width: 100%;
   max-width: 400px;
-  margin: 10rem auto 5rem auto; /* Increased top margin */
+  margin: 20rem auto 5rem auto;
   padding: 2rem;
-  background-color: white;
+  background-color: #f5f3ec;
   border-radius: 8px;
+  border: 5px solid #5bc0de;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -57,7 +54,7 @@ body {
 
 .btn {
   padding: 0.5rem 1rem;
-  background-color: #390281;
+  background-color: #0C97AC;
   color: white;
   border: none;
   border-radius: 4px;

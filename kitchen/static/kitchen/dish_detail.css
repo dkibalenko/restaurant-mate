@@ -1,0 +1,53 @@
+#container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 8rem auto 1rem auto;
+  padding: 2rem;
+  width: 70%;
+  max-width: 90rem;
+  border-radius: 16px;
+  background-color: #0C97AC;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.dish-details {
+  color: white;
+  flex: 1;
+}
+
+.dish-details h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.dish-details p {
+  margin: 0.5rem 0;
+  color: white;
+  font-style: normal;
+}
+
+.dish-details article {
+  flex-shrink: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.dish-details article img {
+  width: 40rem;
+  height: auto;
+  border-radius: 12px;
+  border: 5px solid white;
+  margin-bottom: 1rem;
+}
+
+.dish-details ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}

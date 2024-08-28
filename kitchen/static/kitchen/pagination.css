@@ -12,7 +12,7 @@
 .page-link {
   display: block;
   padding: 0.5rem 1rem;
-  background-color: #f0f0f0;
+  background-color: #f5f3ec;
   border: 1px solid #ddd;
   border-radius: 4px;
   text-decoration: none;
@@ -20,9 +20,8 @@
 }
 
 .page-item.active .page-link {
-  background-color: #390281;
+  background-color: #0C97AC;
   color: white;
-  border-color: #390281;
 }
 
 .page-link:hover {

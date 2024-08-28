@@ -16,7 +16,9 @@
 .dish a:hover,
 .dish a:active {
   transform: scale(1.1);
-  background-color: #390281;
+  /* background-color: #390281; */
+  /* background-color: #1c2d59; */
+  background-color: #0C97AC;
   color: white;
 }
 

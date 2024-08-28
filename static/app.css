@@ -10,6 +10,8 @@ html {
 
 body {
   margin: 0;
+  background-image: url("kitchen/images/test_tools_trans.jpg");
+  background-color: #f5f3ec;
 }
 
 h1,
@@ -20,7 +22,7 @@ h3 {
 }
 
 #main-navigation {
-  background-color: #390281;
+  background-color: #0C97AC;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   width: 100%;
   height: 5rem;
@@ -31,6 +33,7 @@ h3 {
   position: absolute;
   top: 0;
   left: 0;
+  border-bottom: 5px solid white;
 }
 
 #main-navigation a {
@@ -42,7 +45,7 @@ h3 {
 
 #main-navigation a:hover,
 #main-navigation a:active {
-  color: #cf79f1;
+  color: #f4bb66;
 }
 
 #main-navigation h1 a:hover,

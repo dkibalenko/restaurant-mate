@@ -1,7 +1,3 @@
-body {
-  background-color: #e7e7e7;
-}
-
 #all-cooks {
   margin: 7rem auto;
   width: 70%; /* Adjust to 70% of the viewport */
@@ -28,7 +24,7 @@ body {
 }
 
 .btn-create {
-  background-color: #4CAF50;
+  background-color: #0C97AC;
   color: white;
   padding: 10px 20px;
   text-decoration: none;
@@ -55,7 +51,7 @@ body {
 .cook-card {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   border-radius: 12px;
-  background-color: white;
+  background-color: #f5f3ec;
   padding: 2rem;
   box-sizing: border-box;
   display: flex;
@@ -70,7 +66,7 @@ body {
 .cook-card:hover,
 .cook-card:active {
   transform: scale(1.05);
-  background-color: #390281;
+  background-color: #0C97AC;
   color: white;
 }
 
