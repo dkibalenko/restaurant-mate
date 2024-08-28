@@ -36,7 +36,8 @@
 }
 
 .actions {
-  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between ;
 }
 
 .actions .btn {
@@ -44,8 +45,9 @@
   color: white;
   padding: 10px 20px;
   text-decoration: none;
+  text-align: center;
   border-radius: 5px;
-  /* margin-right: 10px; */
+  width: 48%;
 }
 
 .actions .btn:hover {
