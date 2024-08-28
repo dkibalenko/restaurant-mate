@@ -43,12 +43,18 @@ class CookCreateView(LoginRequiredMixin, generic.CreateView):
     form_class = CookCreationForm
     success_url = reverse_lazy("kitchen:cooks-page")
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["page"] = self.request.GET.get("page", 1)
+        return context
+
 
 class CookUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Cook
     template_name = "kitchen/cook_form.html"
     form_class = CookUpdateForm
-    success_url = reverse_lazy("kitchen:cooks-page")
+    success_url = reverse_lazy("kitchen:cook-detail-page")
+    context_object_name = "cook"
 
 
 class CookDeleteView(LoginRequiredMixin, generic.DeleteView):

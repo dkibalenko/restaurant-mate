@@ -15,7 +15,7 @@
   <section id="all-cooks">
     <div class="header">
       <h2>Cooks</h2>
-      <a href="{% url "kitchen:cook-create" %}" class="btn-create">
+      <a href="{% url "kitchen:cook-create" %}?page={{ request.GET.page }}" class="btn-create">
         Create
       </a>
     </div>
