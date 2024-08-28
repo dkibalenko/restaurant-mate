@@ -28,25 +28,16 @@
     </article>
   </section>
 
-  <main>
-    <section id="dishes">
-      <h3>Dishes by {{ cook.full_name }}</h3>
-      <ul>
-        {% for dish in cook.dishes.all %}
-          <li>
-            <article class="dish">
-              <img src="{{ dish.image.url }}" alt="{{ dish.name }}">
-              <div>
-                <h4>{{ dish.name }}</h4>
-                <p>{{ dish.description }}</p>
-                <p><strong>Price:</strong> ${{ dish.price }}</p>
-              </div>
-            </article>
-          </li>
-        {% empty %}
-          <p>No dishes found.</p>
-        {% endfor %}
-      </ul>
-    </section>
-  </main>
+  <section id="all-dishes">
+    <h2>Dishes by {{ cook.full_name }}</h2>
+    <div class="dish-cards">
+      {% for dish in cook.dishes.all %}
+        <a href="{{ dish.get_absolute_url }}" class="dish-card">
+          {% include "kitchen/includes/dish_card.html" %}
+        </a>
+      {% empty %}
+        <p>No dishes found.</p>
+      {% endfor %}
+    </div>
+  </section>
 {% endblock %}
