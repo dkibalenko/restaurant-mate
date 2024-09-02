@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  {{ object|yesno:"Update,Create" }} Dish
+{% endblock %}
+
+{% block css_files %}
+  <link rel="stylesheet" href="{% static "kitchen/dish_form.css" %}">
+{% endblock %}
+
+{% block content %}
+  <section id="dish-form-section">
+    <h2>{{ object|yesno:"Update,Create" }} Dish</h2>
+    <form method="post" enctype="multipart/form-data" class="dish-form" novalidate>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div class="form-actions">
+        <button type="submit" class="btn">{{ object|yesno:"Update,Create" }}</button>
+        {% if object %}
+          <a href="{{ dish.get_absolute_url }}" class="btn btn-cancel">Cancel</a>
+        {% else %}
+          <a href="{% url "kitchen:dishes-page" %}?page={{ page }}" class="btn btn-cancel">Cancel</a>
+        {% endif %}
+      </div>
+    </form>
+  </section>
+{% endblock %}

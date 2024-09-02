@@ -1,8 +1,10 @@
 from django import forms
+from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.core.validators import FileExtensionValidator
+from django.core.exceptions import ValidationError
 
-from .models import Cook
+from .models import Cook, DishIngredient, Dish
 from .mixins import RequiredFieldsMixin
 
 
@@ -60,3 +62,13 @@ class CookUpdateForm(RequiredFieldsMixin, forms.ModelForm):
             "profile_picture",
             "bio",
         )
+
+
+class DishForm(forms.ModelForm):
+    cooks = forms.ModelMultipleChoiceField(
+        queryset=get_user_model().objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+    )
+    class Meta:
+        model = Dish
+        exclude = ("created_at", "updated_at", "ingredients")

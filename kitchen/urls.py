@@ -11,6 +11,7 @@ urlpatterns = [
     path("cooks/<slug:slug>/delete/", views.CookDeleteView.as_view(), name="cook-delete"),
     path("dishes/", views.DishListView.as_view(), name="dishes-page"),
     path("dishes/<int:pk>/", views.DishDetailView.as_view(), name="dish-detail-page"),
+    path("dishes/create/", views.DishCreateView.as_view(), name="dish-create"),
 ]
 
 app_name="kitchen"
