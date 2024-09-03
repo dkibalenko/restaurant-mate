@@ -13,11 +13,11 @@
   <section id="container">
     <div class="dish-details">
       <h1>{{ dish.name }}</h1>
-      {% if dish.image %}
-        <article>
-          <img src="{{ dish.image.url }}" alt="{{ dish.name }}">
-        </article>
-      {% endif %}
+      
+      <article>
+        <img src="{{ dish.image.url }}" alt="{{ dish.name }}">
+      </article>
+      
       <p>{{ dish.description }}</p>
       <p><strong>Price:</strong> ${{ dish.price }}</p>
       <p><strong>Type:</strong> {{ dish.dish_type.name }}</p>
@@ -34,6 +34,10 @@
           </li>
           {% endfor %}
       </ul>
+      <div class="actions">
+        <a href="" class="btn">Update</a>
+        <a href="" class="btn btn-delete">Delete</a>
+      </div>
     </div>
   </section>
 {% endblock %}
