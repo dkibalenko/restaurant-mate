@@ -36,7 +36,7 @@
       </ul>
       <div class="actions">
         <a href="{% url "kitchen:dish-update" dish.id %}" class="btn">Update</a>
-        <a href="" class="btn btn-delete">Delete</a>
+        <a href="{% url "kitchen:dish-delete" dish.id %}" class="btn btn-delete">Delete</a>
       </div>
     </div>
   </section>
