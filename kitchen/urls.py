@@ -12,6 +12,7 @@ urlpatterns = [
     path("dishes/", views.DishListView.as_view(), name="dishes-page"),
     path("dishes/<int:pk>/", views.DishDetailView.as_view(), name="dish-detail-page"),
     path("dishes/create/", views.DishCreateView.as_view(), name="dish-create"),
+    path("dishes/<int:pk>/update/", views.DishUpdateView.as_view(), name="dish-update"),
 ]
 
 app_name="kitchen"

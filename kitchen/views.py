@@ -5,7 +5,6 @@ from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
 from django.views import generic
 from django.urls import reverse_lazy
-from django.db import IntegrityError
 
 
 from .models import Dish, Cook
@@ -82,3 +81,11 @@ class DishCreateView(LoginRequiredMixin, generic.CreateView):
     form_class = DishForm
     template_name = "kitchen/dish_form.html"
     success_url = reverse_lazy("kitchen:dishes-page")
+
+
+class DishUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Dish
+    template_name = "kitchen/dish_form.html"
+    form_class = DishForm
+    success_url = reverse_lazy("kitchen:dishes-page")
+    context_object_name = "dish"
