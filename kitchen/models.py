@@ -77,10 +77,9 @@ class Dish(models.Model):
     )
     ingredients = models.ManyToManyField(
         Ingredient,
-        through="DishIngredient",
         related_name="dishes"
     )
-    image = models.ImageField(upload_to="dish_images", blank=True, null=True)
+    image = models.ImageField(upload_to="dish_images")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -92,19 +91,19 @@ class Dish(models.Model):
     
     def get_absolute_url(self):
         return reverse("kitchen:dish-detail-page", kwargs={"pk": self.pk})
+    
 
+# class DishIngredient(models.Model):
+#     dish = models.ForeignKey(Dish, on_delete=models.CASCADE)
+#     ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
+#     quantity = models.DecimalField(max_digits=6, decimal_places=2)
+#     unit = models.CharField(max_length=20)
 
-class DishIngredient(models.Model):
-    dish = models.ForeignKey(Dish, on_delete=models.CASCADE)
-    ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
-    quantity = models.DecimalField(max_digits=6, decimal_places=2)
-    unit = models.CharField(max_length=20)
+#     # constraint to ensure that each ingredient can only appear once per dish
+#     class Meta:
+#         constraints = [
+#             models.UniqueConstraint(fields=["dish", "ingredient"], name="unique_dish_ingredient")
+#         ]
 
-    # constraint to ensure that each ingredient can only appear once per dish
-    class Meta:
-        constraints = [
-            models.UniqueConstraint(fields=["dish", "ingredient"], name="unique_dish_ingredient")
-        ]
-
-    def __str__(self) -> str:
-        return f"{self.dish.name} - {self.ingredient.name}: {self.quantity} {self.unit}"
+#     def __str__(self) -> str:
+#         return f"{self.dish.name} - {self.ingredient.name}: {self.quantity} {self.unit}"

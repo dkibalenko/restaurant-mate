@@ -28,9 +28,9 @@
       </p>
       <h3>Ingredients:</h3>
       <ul>
-        {% for dish_ingredient in dish.dishingredient_set.all %}
+        {% for ingredient in dish.ingredients.all %}
           <li>
-            {{ dish_ingredient.ingredient.name }}: {{ dish_ingredient.quantity }} {{ dish_ingredient.unit }}
+            {{ ingredient.name }}{% if not forloop.last %}, {% endif %}
           </li>
           {% endfor %}
       </ul>

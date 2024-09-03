@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.validators import FileExtensionValidator
 from django.core.exceptions import ValidationError
 
-from .models import Cook, DishIngredient, Dish
+from .models import Cook, Dish, Ingredient
 from .mixins import RequiredFieldsMixin
 
 
@@ -69,6 +69,10 @@ class DishForm(forms.ModelForm):
         queryset=get_user_model().objects.all(),
         widget=forms.CheckboxSelectMultiple,
     )
+    ingredients = forms.ModelMultipleChoiceField(
+        queryset=Ingredient.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+    )
     class Meta:
         model = Dish
-        exclude = ("created_at", "updated_at", "ingredients")
+        exclude = ("created_at", "updated_at",)

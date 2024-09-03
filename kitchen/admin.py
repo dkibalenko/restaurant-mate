@@ -1,18 +1,12 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import Cook, DishType, Dish, Ingredient, DishIngredient
-
-
-class DishIngredientInline(admin.TabularInline):
-    model = DishIngredient
-    extra = 1  # Number of extra forms to display
+from .models import Cook, DishType, Dish, Ingredient
 
 
 @admin.register(Dish)
 class DishAdmin(admin.ModelAdmin):
     list_display = ("name", "dish_type", "price", "created_at", "updated_at",)
-    inlines = [DishIngredientInline]
 
 
 @admin.register(DishType)

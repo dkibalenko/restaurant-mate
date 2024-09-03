@@ -19,6 +19,18 @@
   flex-direction: column;
 }
 
+.form-group {
+  margin-bottom: 15px;
+}
+
+.scrollable-checkboxes {
+  max-height: 200px;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
 .dish-form .form-actions {
   display: flex;
   justify-content: space-between;
