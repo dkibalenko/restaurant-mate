@@ -6,13 +6,13 @@
 {% endblock %}
 
 {% block css_files %}
-  {% comment %} <link rel="stylesheet" href="{% static "kitchen/cook_confirm_delete.css" %}"> {% endcomment %}
+  <link rel="stylesheet" href="{% static "kitchen/cook_confirm_delete.css" %}">
 {% endblock css_files %}
 
 {% block content %}
   <section id="delete-confirmation">
     <h1>Delete Dish?</h1>
-    <p>Are you sure you want to delete this cook? This action cannot be undone.</p>
+    <p>Are you sure you want to delete this dish? This action cannot be undone.</p>
     <form action="" method="post">
       {% csrf_token %}
       <div class="form-actions">
