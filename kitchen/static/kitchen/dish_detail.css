@@ -50,6 +50,22 @@
   background-color: #c9302c;
 }
 
+.actions .btn-assign {
+  background-color: #f69712;
+}
+
+.actions .btn-assign:hover {
+  background-color: #e58908;
+}
+
+.actions .btn-unassign {
+  background-color: #843cf1;
+}
+
+.actions .btn-unassign:hover {
+  background-color: #7727ef;
+}
+
 .dish-details p {
   margin: 0.5rem 0;
   color: white;

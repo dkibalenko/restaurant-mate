@@ -25,7 +25,7 @@ class CookAdmin(UserAdmin):
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
         ('Additional info', {'fields': ('bio', 'years_of_experience', 'profile_picture')}),
     )
-    # o be used when creating a user
+    # to be used when creating a user
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
