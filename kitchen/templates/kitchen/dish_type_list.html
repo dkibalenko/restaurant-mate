@@ -7,20 +7,25 @@
 
 {% block css_files %}
   <link rel="stylesheet" href="{% static "kitchen/dish_type_list.css" %}">
+  <link rel="stylesheet" href="{% static "kitchen/pagination.css" %}">
 {% endblock css_files %}
 
 {% block content %}
-  <section id="dish-types">
+  <section class="container">
     <h1>Dish Types</h1>
-    <ul>
       {% for dish_type in dish_types %}
-        <li>
-          <strong>{{ dish_type.name }}</strong>
+        <section class="dish-type">
+          <h2>{{ dish_type.name }}</h2>
           <p>{{ dish_type.description }}</p>
-          <a href="">Update</a>
-          <a href="">Delete</a>
-        </li>
+          <div class="actions">
+            <a href="" class="btn">Update</a>
+            <a href="" class="btn btn-delete">Delete</a>
+          </div>
+        </section>
       {% endfor %}
-    </ul>
   </section>
 {% endblock content %}
+
+{% block pagination %}
+  {% include "kitchen/includes/pagination.html" %}
+{% endblock pagination %}

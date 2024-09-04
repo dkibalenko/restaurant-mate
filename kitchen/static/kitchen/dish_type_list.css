@@ -1,0 +1,57 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+} 
+
+h1 {
+  font-size: 3em;
+  margin: 8rem auto 1rem auto;
+  color: black;
+  text-align: center;
+}
+
+.dish-type {
+  display: block;
+  background-color: #0C97AC;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+  width: 50rem;
+  color: white;
+  margin-bottom: 1rem;
+  padding: 1.5rem;
+}
+
+.dish-type h2 {
+  text-align: center;
+  margin: 0;
+}
+
+.actions {
+  margin-top: 2rem;
+}
+
+.actions .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  text-align: right;
+  font-size: 1rem;
+  border-radius: 5px;
+  width: 48%;
+}
+
+.actions .btn:hover {
+  background-color: #45a049;
+}
+
+.actions .btn-delete {
+  background-color: #d9534f;
+}
+
+.actions .btn-delete:hover {
+  background-color: #c9302c;
+}

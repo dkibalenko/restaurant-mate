@@ -101,6 +101,7 @@ class DishTypeListView(LoginRequiredMixin, generic.ListView):
     model = Dish
     template_name = "kitchen/dish_type_list.html"
     context_object_name = "dish_types"
+    paginate_by = 3
 
 
 @login_required
