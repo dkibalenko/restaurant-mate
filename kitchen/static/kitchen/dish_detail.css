@@ -24,6 +24,9 @@
 }
 
 .actions {
+  display: flex;
+  justify-content: left;
+  gap: 10px;
   margin-top: 2rem;
 }
 
@@ -32,10 +35,10 @@
   color: white;
   padding: 10px 20px;
   text-decoration: none;
-  text-align: right;
+  text-align: center;
   font-size: 1rem;
   border-radius: 5px;
-  width: 48%;
+  width: 150px;
 }
 
 .actions .btn:hover {
@@ -48,6 +51,15 @@
 
 .actions .btn-delete:hover {
   background-color: #c9302c;
+}
+
+.actions .btn-update-assign {
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 1rem;
+  border-radius: 5px;
 }
 
 .actions .btn-assign {

@@ -30,6 +30,9 @@ h1 {
 }
 
 .actions {
+  display: flex;
+  justify-content: left;
+  gap: 10px;
   margin-top: 2rem;
 }
 
@@ -38,10 +41,10 @@ h1 {
   color: white;
   padding: 10px 20px;
   text-decoration: none;
-  text-align: right;
+  text-align: center;
   font-size: 1rem;
   border-radius: 5px;
-  width: 48%;
+  width: 150px;
 }
 
 .actions .btn:hover {
