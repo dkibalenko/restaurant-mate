@@ -91,19 +91,3 @@ class Dish(models.Model):
     
     def get_absolute_url(self):
         return reverse("kitchen:dish-detail-page", kwargs={"pk": self.pk})
-    
-
-# class DishIngredient(models.Model):
-#     dish = models.ForeignKey(Dish, on_delete=models.CASCADE)
-#     ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
-#     quantity = models.DecimalField(max_digits=6, decimal_places=2)
-#     unit = models.CharField(max_length=20)
-
-#     # constraint to ensure that each ingredient can only appear once per dish
-#     class Meta:
-#         constraints = [
-#             models.UniqueConstraint(fields=["dish", "ingredient"], name="unique_dish_ingredient")
-#         ]
-
-#     def __str__(self) -> str:
-#         return f"{self.dish.name} - {self.ingredient.name}: {self.quantity} {self.unit}"

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  Dish Types
+{% endblock %}
+
+{% block css_files %}
+  <link rel="stylesheet" href="{% static "kitchen/dish_type_list.css" %}">
+{% endblock css_files %}
+
+{% block content %}
+  <section id="dish-types">
+    <h1>Dish Types</h1>
+    <ul>
+      {% for dish_type in dish_types %}
+        <li>
+          <strong>{{ dish_type.name }}</strong>
+          <p>{{ dish_type.description }}</p>
+          <a href="">Update</a>
+          <a href="">Delete</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endblock content %}
