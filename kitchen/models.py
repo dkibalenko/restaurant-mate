@@ -46,6 +46,9 @@ class Cook(AbstractUser):
             self.slug = slugify(f"{self.first_name}-{self.last_name}")
         super().save(*args, **kwargs)
 
+    def get_absolute_url(self):
+        return reverse("kitchen:cook-detail-page", kwargs={"slug": self.slug})
+
 
 class Ingredient(models.Model):
     name = models.CharField(max_length=63)

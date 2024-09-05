@@ -21,7 +21,7 @@
     </div>
     <div class="cook-cards">
       {% for cook in cooks %}
-        <a href="{% url "kitchen:cook-detail-page" cook.slug %}" class="cook-card">
+        <a href="{{ cook.get_absolute_url }}" class="cook-card">
           {% include "kitchen/includes/cook_preview.html" %}
         </a>
       {% endfor %}
