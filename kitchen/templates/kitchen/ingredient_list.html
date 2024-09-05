@@ -30,7 +30,7 @@
             {% endif %}
             <div class="actions">
               <a href="{% url "kitchen:ingredient-update" ingredient.id %}" class="btn">Update</a>
-              <a href="" class="btn btn-delete">Delete</a>
+              <a href="{% url "kitchen:ingredient-delete" ingredient.id %}" class="btn btn-delete">Delete</a>
             </div>
           </section>
         {% endfor %}
