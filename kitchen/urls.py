@@ -19,6 +19,7 @@ urlpatterns = [
     path("dish_types/create", views.DishTypeCreateView.as_view(), name="dish-type-create"),
     path("dish_types/<int:pk>/update", views.DishTypeUpdateView.as_view(), name="dish-type-update"),
     path("dish_types/<int:pk>/delete", views.DishTypeDeleteView.as_view(), name="dish-type-delete"),
+    path("ingredients/", views.IngredientListView.as_view(), name="ingredients-page"),
 ]
 
 app_name="kitchen"
