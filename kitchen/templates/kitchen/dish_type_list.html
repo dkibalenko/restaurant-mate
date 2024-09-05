@@ -12,17 +12,22 @@
 
 {% block content %}
   <section class="container">
-    <h1>Dish Types</h1>
-      {% for dish_type in dish_types %}
-        <section class="dish-type">
-          <h2>{{ dish_type.name }}</h2>
-          <p>{{ dish_type.description }}</p>
-          <div class="actions">
-            <a href="" class="btn">Update</a>
-            <a href="" class="btn btn-delete">Delete</a>
-          </div>
-        </section>
-      {% endfor %}
+    <div class="header">
+      <h2>Dish Types</h2>
+      <a href="{% url "kitchen:dish-type-create" %}" class="btn-create">
+        Create
+      </a>
+    </div>
+    {% for dish_type in dish_types %}
+      <section class="dish-type">
+        <h2>{{ dish_type.name }}</h2>
+        <p>{{ dish_type.description }}</p>
+        <div class="actions">
+          <a href="{% url "kitchen:dish-type-update" dish_type.id %}" class="btn">Update</a>
+          <a href="{% url 'kitchen:dish-type-delete' dish_type.id %}" class="btn btn-delete">Delete</a>
+        </div>
+      </section>
+    {% endfor %}
   </section>
 {% endblock content %}
 

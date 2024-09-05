@@ -7,7 +7,7 @@ from django.views import generic
 from django.urls import reverse_lazy
 
 
-from .models import Dish, Cook
+from .models import Dish, Cook, DishType
 from .forms import CookCreationForm, CookUpdateForm, DishForm
 
 
@@ -98,10 +98,32 @@ class DishDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 
 class DishTypeListView(LoginRequiredMixin, generic.ListView):
-    model = Dish
+    model = DishType
     template_name = "kitchen/dish_type_list.html"
     context_object_name = "dish_types"
     paginate_by = 3
+
+
+class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
+    model = DishType
+    fields = "__all__"
+    template_name = "kitchen/dish_type_form.html"
+    success_url = reverse_lazy("kitchen:dish-types-page")
+    context_object_name = "dish_type"
+
+
+class DishTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = DishType
+    fields = "__all__"
+    template_name = "kitchen/dish_type_form.html"
+    success_url = reverse_lazy("kitchen:dish-types-page")
+    context_object_name = "dish_type"
+
+
+class DishTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = DishType
+    template_name = "kitchen/dish_type_confirm_delete.html"
+    success_url = reverse_lazy("kitchen:dish-types-page")
 
 
 @login_required
