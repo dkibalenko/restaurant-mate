@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  Ingredients
+{% endblock %}
+
+{% block css_files %}
+  <link rel="stylesheet" href="{% static "kitchen/ingredient_list.css" %}">
+  <link rel="stylesheet" href="{% static "kitchen/pagination.css" %}">
+{% endblock css_files %}
+
+{% block content %}
+  <div class="header">
+    <h2>Ingredients</h2>
+    <a href="" class="btn-create">
+      Create
+    </a>
+  </div>
+  <section class="container">
+    <div class="ingredients">
+      {% if ingredients %}
+        {% for ingredient in ingredients %}
+          <section class="ingredient">
+            <h2>{{ ingredient.name }}</h2>
+            {% if ingredient.description %}
+              <p>{{ ingredient.description }}</p>
+            {% else %}
+              <p>No description added.</p>
+            {% endif %}
+            <div class="actions">
+              <a href="" class="btn">Update</a>
+              <a href="" class="btn btn-delete">Delete</a>
+            </div>
+          </section>
+        {% endfor %}
+      {% else %}
+        <p>No ingredients found.</p>
+      {% endif %}
+    </div>
+  </section>
+{% endblock content %}
+
+{% block pagination %}
+  {% include "kitchen/includes/pagination.html" %}
+{% endblock pagination %}

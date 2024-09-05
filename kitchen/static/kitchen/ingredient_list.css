@@ -36,13 +36,13 @@
   background-color: #45a049;
 }
 
-.dish-types {
+.ingredients {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
 }
 
-.dish-type {
+.ingredient {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,14 +56,14 @@
   box-sizing: border-box;
 }
 
-.dish-type:hover,
-.dish-type:active {
+.ingredient:hover,
+.ingredient:active {
   transform: scale(1.05);
   background-color: #0C97AC;
   color: white;
 }
 
-.dish-type h2 {
+.ingredient h2 {
   font-size: 1.5rem;
   margin: 0;
 }
