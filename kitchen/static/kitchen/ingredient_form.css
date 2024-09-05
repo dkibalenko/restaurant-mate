@@ -1,4 +1,4 @@
-#dish-type-form-section {
+#ingredient-form-section {
   width: 100%;
   max-width: 600px;
   margin: 10rem auto;
@@ -9,24 +9,24 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-#dish-type-form-section h2 {
+#ingredient-form-section h2 {
   text-align: center;
   margin-bottom: 1.5rem;
 }
 
-.dish-type-form {
+.ingredient-form {
   display: flex;
   flex-direction: column;
 }
 
-.dish-type-form .form-actions {
+.ingredient-form .form-actions {
   display: flex;
   justify-content: space-between;
   margin-top: 1.5rem;
 }
 
-.dish-type-form .btn,
-.dish-type-form .btn-cancel {
+.ingredient-form .btn,
+.ingredient-form .btn-cancel {
   padding: 0.5rem 1rem;
   width: 48%;
   background-color: #0c97ac;
@@ -39,14 +39,14 @@
   font-size: medium;
 }
 
-.dish-type-form .btn:hover {
+.ingredient-form .btn:hover {
   background-color: #0056b3;
 }
 
-.dish-type-form .btn-cancel {
+.ingredient-form .btn-cancel {
   background-color: #b1afaf;
 }
 
-.dish-type-form .btn-cancel:hover {
+.ingredient-form .btn-cancel:hover {
   background-color: #999;
 }
