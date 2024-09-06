@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block css_files %}
+  <link rel="stylesheet" href="{% static "kitchen/search_form.css" %}">
   <link rel="stylesheet" href="{% static "kitchen/ingredient_list.css" %}">
   <link rel="stylesheet" href="{% static "kitchen/pagination.css" %}">
 {% endblock css_files %}
@@ -13,6 +14,7 @@
 {% block content %}
   <div class="header">
     <h2>Ingredients</h2>
+    {% include "kitchen/includes/search_form.html" %}
     <a href="{% url "kitchen:ingredient-create" %}" class="btn-create">
       Create
     </a>
