@@ -49,7 +49,6 @@ class CookCreationForm(RequiredFieldsMixin, UserCreationForm):
 
 class CookUpdateForm(RequiredFieldsMixin, forms.ModelForm):
     profile_picture = profile_picture_extension_validator()
-    required_fields = ["first_name", "last_name"]
     class Meta:
         model = Cook
         fields = (
@@ -75,3 +74,16 @@ class DishForm(forms.ModelForm):
     class Meta:
         model = Dish
         exclude = ("created_at", "updated_at",)
+
+
+class CookSearchForm(forms.Form):
+    username = forms.CharField(
+        max_length=255,
+        required=False,
+        label=False,
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Search by username"
+            }
+        )
+    )
