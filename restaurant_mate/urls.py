@@ -18,15 +18,15 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
+from debug_toolbar.toolbar import debug_toolbar_urls
 
 from kitchen.views import custom_logout_view
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("kitchen.urls", namespace="kitchen")),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-urlpatterns += [
     path("accounts/logout/", custom_logout_view, name="logout"),
     path("accounts/", include("django.contrib.auth.urls")),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += debug_toolbar_urls()
