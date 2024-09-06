@@ -13,7 +13,7 @@ from .forms import CookCreationForm, CookUpdateForm, DishForm, CookSearchForm, D
 
 @login_required
 def index(request: HttpRequest) -> HttpResponse:
-    dishes = Dish.objects.all().order_by("-updated_at")[:3]
+    dishes = Dish.objects.all().order_by("-updated_at")[:3].prefetch_related("ingredients")
     return render(request, "kitchen/index.html", {"dishes": dishes})
 
 @login_required
@@ -95,7 +95,7 @@ class DishListView(LoginRequiredMixin, generic.ListView):
         return context
     
     def get_queryset(self):
-        queryset = Dish.objects.all()
+        queryset = Dish.objects.all().prefetch_related("ingredients")
         form = DishSearchForm(self.request.GET)
         if form.is_valid():
             return queryset.filter(
