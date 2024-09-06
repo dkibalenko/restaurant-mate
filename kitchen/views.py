@@ -192,7 +192,7 @@ class IngredientListView(LoginRequiredMixin, generic.ListView):
         return context
     
     def get_queryset(self):
-        queryset = DishType.objects.all()
+        queryset = Ingredient.objects.all()
         form = IngredientSearchForm(self.request.GET)
         if form.is_valid():
             return queryset.filter(
