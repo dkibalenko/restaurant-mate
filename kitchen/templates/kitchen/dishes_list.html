@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block css_files %}
+  <link rel="stylesheet" href="{% static "kitchen/search_form.css" %}">
   <link rel="stylesheet" href="{% static "kitchen/dishes_list.css" %}">
   <link rel="stylesheet" href="{% static "kitchen/pagination.css" %}">
 {% endblock %}
@@ -14,6 +15,7 @@
   <section id="all-dishes">
     <div class="header">
       <h2>Dishes</h2>
+      {% include "kitchen/includes/search_form.html" %}
       <a href="{% url "kitchen:dish-create" %}" class="btn-create">
         Create
       </a>
