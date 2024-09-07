@@ -1,6 +1,6 @@
 #all-dishes {
   margin: 7rem auto;
-  width: 70%; /* Adjust to 70% of the viewport */
+  width: 70%;
 }
 
 #all-dishes h2 {
@@ -27,12 +27,12 @@
 }
 
 .btn-create:hover {
-  background-color: #45a049;
+  background-color: #087889;
 }
 
 .dish-cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
 
@@ -72,5 +72,5 @@
 
 .dish-card p {
   margin: 0.5rem 0;
-  word-wrap: break-word; /* Ensure text wraps within the card */
+  word-wrap: break-word;
 }

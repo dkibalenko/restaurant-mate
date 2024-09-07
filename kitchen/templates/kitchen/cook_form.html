@@ -12,15 +12,22 @@
 {% block content %}
   <section id="cook-form-section">
     <h2>{{ object|yesno:"Update,Create" }} Cook</h2>
-    <form method="post" enctype="multipart/form-data" class="cook-form" novalidate>
+    <form method="post" enctype="multipart/form-data" 
+    class="cook-form" novalidate>
       {% csrf_token %}
       {{ form.as_p }}
       <div class="form-actions">
-        <button type="submit" class="btn">{{ object|yesno:"Update,Create" }}</button>
+        <button type="submit" 
+        class="btn">{{ object|yesno:"Update,Create" }}</button>
         {% if cook %}
-          <a href="{{ cook.get_absolute_url }}" class="btn btn-cancel">Cancel</a>
+          <a href="{{ cook.get_absolute_url }}" class="btn btn-cancel">
+            Cancel
+          </a>
         {% else %}
-          <a href="{% url "kitchen:cooks-page" %}?page={{ page }}" class="btn btn-cancel">Cancel</a>
+          <a href="{% url "kitchen:cooks-page" %}?page={{ page }}" 
+          class="btn btn-cancel">
+            Cancel
+          </a>
         {% endif %}
       </div>
     </form>

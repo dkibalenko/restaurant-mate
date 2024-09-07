@@ -6,7 +6,6 @@
 {% endblock %}
 
 {% block css_files %}
-  {% comment %} <link rel="stylesheet" href="{% static "kitchen/cook_preview.css" %}"> {% endcomment %}
   <link rel="stylesheet" href="{% static "kitchen/search_form.css" %}">
   <link rel="stylesheet" href="{% static "kitchen/all_cooks.css" %}">
   <link rel="stylesheet" href="{% static "kitchen/pagination.css" %}">
@@ -17,7 +16,8 @@
     <div class="header">
       <h2>Cooks</h2>
       {% include "kitchen/includes/search_form.html" %}
-      <a href="{% url "kitchen:cook-create" %}?page={{ request.GET.page }}" class="btn-create">
+      <a href="{% url "kitchen:cook-create" %}?page={{ request.GET.page }}" 
+      class="btn-create">
         Create
       </a>
     </div>

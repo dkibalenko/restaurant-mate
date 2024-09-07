@@ -41,17 +41,18 @@
 }
 
 .actions .btn {
-  background-color: #4CAF50;
+  background-color: #0C97AC;
   color: white;
   padding: 10px 20px;
   text-decoration: none;
   text-align: center;
+  border: solid 2.5px white;
   border-radius: 5px;
   width: 48%;
 }
 
 .actions .btn:hover {
-  background-color: #45a049;
+  background-color: #087889;
 }
 
 .actions .btn-delete {

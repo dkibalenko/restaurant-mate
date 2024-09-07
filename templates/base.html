@@ -17,19 +17,23 @@
 
 <body>
   <header id="main-navigation">
-    <h2><a href="{% url "kitchen:main-page" %}">Home</a></h2>
     <nav>
+      <span>
+        <a href="{% url "kitchen:main-page" %}">Home</a>
+        <a href="{% url "kitchen:cooks-page" %}">Cooks</a>
+        <a href="{% url "kitchen:dishes-page" %}">Dishes</a>
+        <a href="{% url "kitchen:dish-types-page" %}">Dish Types</a>
+        <a href="{% url "kitchen:ingredients-page" %}">Ingredients</a>
+      </span>
+    </nav>
+    <div>
       {% if user.is_authenticated %}
         <span class="user-info">Welcome, {{ user.username }}!</span>
         <a href="{% url "logout" %}">Logout</a>
       {% else %}
         <a href="{% url 'login' %}">Login</a>
       {% endif %}
-      <a href="{% url "kitchen:cooks-page" %}">Cooks</a>
-      <a href="{% url "kitchen:dishes-page" %}">Dishes</a>
-      <a href="{% url "kitchen:dish-types-page" %}">Dish Types</a>
-      <a href="{% url "kitchen:ingredients-page" %}">Ingredients</a>
-    </nav>
+    </div>
   </header>
 
   {% block content %}

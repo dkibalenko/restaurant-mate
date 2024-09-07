@@ -19,7 +19,6 @@
   border: 5px solid white;
   border-radius: 50%;
   background-color: #ffe1bf;
-  /* transform: rotateZ(-5deg); */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
@@ -27,7 +26,6 @@
   font-size: 2.5rem;
   margin: 1rem 0 0 2rem;
   color: white;
-  /* mix-blend-mode: difference; */
   width: 30rem;
 }
 

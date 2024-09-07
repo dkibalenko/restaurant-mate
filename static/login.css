@@ -54,13 +54,17 @@ body {
 
 .btn {
   padding: 0.5rem 1rem;
+  width: 48%;
   background-color: #0C97AC;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font-size: medium;
 }
 
 .btn:hover {
-  background-color: #0056b3;
+  background-color: #087889;
 }

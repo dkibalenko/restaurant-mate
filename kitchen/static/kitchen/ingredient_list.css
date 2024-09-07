@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   margin: 2rem auto;
-  width: 70%;
+  width: 85%;
 }
 
 .header {
@@ -12,7 +12,7 @@
   justify-content: space-between;
   align-items: center;
   margin: 8rem auto 1rem auto;
-  width: 70%;
+  width: 85%;
 }
 
 .header h2 {
@@ -27,18 +27,16 @@
   color: white;
   padding: 10px 20px;
   text-decoration: none;
-  text-align: center;
   border-radius: 5px;
-  width: 100px;
 }
 
 .btn-create:hover {
-  background-color: #45a049;
+  background-color: #087889;
 }
 
 .ingredients {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 1.5rem;
 }
 
@@ -76,18 +74,19 @@
 }
 
 .actions .btn {
-  background-color: #4CAF50;
+  background-color: #0C97AC;
   color: white;
   padding: 10px 20px;
   text-decoration: none;
   text-align: center;
   font-size: 1rem;
+  border: solid 2.5px white;
   border-radius: 5px;
   width: 100px;
 }
 
 .actions .btn:hover {
-  background-color: #45a049;
+  background-color: #087889;
 }
 
 .actions .btn-delete {

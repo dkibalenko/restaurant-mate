@@ -12,12 +12,17 @@
 {% block content %}
   <section id="dish-type-form-section">
     <h2>{{ object|yesno:"Update,Create" }} Dish Type</h2>
-    <form method="post" enctype="multipart/form-data" class="dish-type-form" novalidate>
+    <form method="post" enctype="multipart/form-data" 
+    class="dish-type-form" novalidate>
       {% csrf_token %}
       {{ form.as_p }}
       <div class="form-actions">
-        <button type="submit" class="btn">{{ object|yesno:"Update,Create" }}</button>
-        <a href="{% url "kitchen:dish-types-page"%}" class="btn btn-cancel">Cancel</a>
+        <button type="submit" class="btn">
+          {{ object|yesno:"Update,Create" }}
+        </button>
+        <a href="{% url "kitchen:dish-types-page"%}" class="btn btn-cancel">
+          Cancel
+        </a>
       </div>
     </form>
   </section>

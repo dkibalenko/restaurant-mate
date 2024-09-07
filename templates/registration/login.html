@@ -8,12 +8,17 @@
 {% block content %}
   <section id="login-section">
     {% if form.errors %}
-      <p class="error-message">Your username and password didn't match. Please try again.</p>
+      <p class="error-message">
+        Your username and password didn't match. Please try again.
+      </p>
     {% endif %}
 
     {% if next %}
       {% if user.is_authenticated %}
-        <p class="info-message">Your account doesn't have access to this page. To proceed, please login with an account that has access.</p>
+        <p class="info-message">
+          Your account doesn't have access to this page. 
+          To proceed, please login with an account that has access.
+        </p>
       {% else %}
         <p class="info-message">Please login to see this page.</p>
       {% endif %}
@@ -34,5 +39,6 @@
         <input type="hidden" name="next" value="{{ next }}">
       </div>
     </form>
+
   </section>
 {% endblock %}

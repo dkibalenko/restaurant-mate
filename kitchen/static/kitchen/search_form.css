@@ -14,8 +14,8 @@
   margin-right: 2px;
   border: 2px solid #0C97AC;
   border-radius: 4px;
-  font-size: 16px; /* Increase font size */
-  width: 300px; /* Increase width */
+  font-size: 16px;
+  width: 300px;
 }
 
 .btn-search {
@@ -25,7 +25,7 @@
   border: 2px solid #0C97AC;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 16px; /* Increase font size */
+  font-size: 16px;
 }
 
 .btn-search:hover {
