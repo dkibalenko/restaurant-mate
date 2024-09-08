@@ -40,13 +40,13 @@
 }
 
 .ingredient-form .btn:hover {
-  background-color: #0056b3;
+  background-color: #087889;
 }
 
 .ingredient-form .btn-cancel {
-  background-color: #b1afaf;
+  background-color: #999;
 }
 
 .ingredient-form .btn-cancel:hover {
-  background-color: #999;
+  background-color: #797777;
 }

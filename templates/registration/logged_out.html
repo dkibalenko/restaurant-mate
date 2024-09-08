@@ -13,8 +13,9 @@
       {% csrf_token %}
       <div class="form-actions">
         <button type="submit" class="btn">Logout</button>
-        <a href="{{ request.session.previous_url|default:
-        '{% url "kitchen:main-page" %}' }}" class="btn-cancel">
+        <a 
+        href="{{ request.session.previous_url|default:'{% url "kitchen:main-page" %}' }}" 
+        class="btn-cancel">
           Cancel
         </a>
       </div>
