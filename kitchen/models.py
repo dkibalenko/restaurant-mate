@@ -39,7 +39,7 @@ class Cook(AbstractUser):
         ordering = ("username",)
 
     def __str__(self) -> str:
-        return f"{self.username}: ({self.first_name} {self.last_name})"
+        return f"{self.username}: ({self.full_name()})"
     
     def save(self, *args, **kwargs):
         if not self.slug:
