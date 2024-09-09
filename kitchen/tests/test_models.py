@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
 
-from kitchen.models import DishType, Ingredient
+from kitchen.models import DishType, Ingredient, Dish
 
 
 class ModelsTests(TestCase):
@@ -15,6 +15,14 @@ class ModelsTests(TestCase):
         )
         self.dish_type = DishType.objects.create(name="Pizza")
         self.ingredient = Ingredient.objects.create(name="Water")
+        self.dish = Dish.objects.create(
+            name="Test_dish",
+            description="Test_description",
+            price=10.00,
+            dish_type=self.dish_type,
+        )
+        self.dish.cooks.set([self.cook])
+        self.dish.ingredients.set([self.ingredient])
     def test_dish_type_str(self):
         self.assertEqual(str(self.dish_type), self.dish_type.name)
 
@@ -41,3 +49,12 @@ class ModelsTests(TestCase):
 
     def test_ingredient_str(self):
         self.assertEqual(str(self.ingredient), self.ingredient.name)
+
+    def test_dish_str(self):
+        self.assertEqual(str(self.dish), self.dish.name)
+
+    def test_dish_get_absolute_url(self):
+        self.assertEqual(
+            self.dish.get_absolute_url(), 
+            reverse("kitchen:dish-detail-page", kwargs={"pk": self.dish.pk})
+        )
