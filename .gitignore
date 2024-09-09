@@ -4,3 +4,5 @@
 db.sqlite3
 uploads
 kitchen/static/kitchen/images
+.env
+.vscode/
