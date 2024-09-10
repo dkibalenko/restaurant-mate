@@ -47,6 +47,14 @@ class ModelsTests(TestCase):
             )
         )
 
+    def test_cook_create_with_bio_years_of_experience_profile_image(self):
+        self.cook.bio = "Test_bio"
+        self.cook.years_of_experience = 5
+        self.cook.profile_picture = "test_profile_image.jpg"
+        self.assertEqual(self.cook.bio, "Test_bio")
+        self.assertEqual(self.cook.years_of_experience, 5)
+        self.assertEqual(self.cook.profile_picture, "test_profile_image.jpg")
+
     def test_ingredient_str(self):
         self.assertEqual(str(self.ingredient), self.ingredient.name)
 
