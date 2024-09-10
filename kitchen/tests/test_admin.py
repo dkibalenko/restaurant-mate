@@ -85,7 +85,7 @@ class AdminSiteTests(TestCase):
             self.assertNotContains(search_response, "John Wick")
             self.assertNotContains(search_response, "Ray Charles")
 
-    def test_readonly_fields(self):
+    def test_cook_slug_readonly(self):
         """
         Tests that the slug field is shown as read-only in the admin site.
         """
