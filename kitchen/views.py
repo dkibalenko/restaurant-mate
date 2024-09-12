@@ -6,7 +6,6 @@ from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.views import generic
 from django.urls import reverse_lazy
 
-
 from .models import Dish, Cook, DishType, Ingredient
 from .forms import CookCreationForm, CookUpdateForm, DishForm, CookSearchForm, DishSearchForm, DishTypeSearchForm, IngredientSearchForm
 
@@ -14,6 +13,7 @@ from .forms import CookCreationForm, CookUpdateForm, DishForm, CookSearchForm, D
 @login_required
 def index(request: HttpRequest) -> HttpResponse:
     dishes = Dish.objects.all().order_by("-updated_at")[:3].prefetch_related("ingredients")
+    print("dishes in index", dishes)
     return render(request, "kitchen/index.html", {"dishes": dishes})
 
 @login_required
