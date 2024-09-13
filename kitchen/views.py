@@ -13,7 +13,6 @@ from .forms import CookCreationForm, CookUpdateForm, DishForm, CookSearchForm, D
 @login_required
 def index(request: HttpRequest) -> HttpResponse:
     dishes = Dish.objects.all().order_by("-updated_at")[:3].prefetch_related("ingredients")
-    print("dishes in index", dishes)
     return render(request, "kitchen/index.html", {"dishes": dishes})
 
 @login_required
