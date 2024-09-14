@@ -5,6 +5,7 @@ from django.urls import reverse
 from kitchen.models import Dish, DishType, Ingredient
 from kitchen.forms import CookSearchForm
 
+
 COOKS_LIST_URL = reverse("kitchen:cooks-page")
 
 
@@ -77,7 +78,9 @@ class PrivateCookViewTest(TestCase):
             dish.ingredients.add(*dish_data["ingredients"])
 
         cls.pizza = Dish.objects.get(name="Pizza")
-        cls.client.force_login(cls.user)
+
+    def setUp(self) -> None:
+        self.client.force_login(self.user)
 
     def test_cook_get_context_data_receives_correct_search_form(self):
         response = self.client.get(COOKS_LIST_URL)
@@ -85,13 +88,13 @@ class PrivateCookViewTest(TestCase):
         self.assertIsInstance(response.context["search_form"], CookSearchForm)
 
     def test_cook_get_queryset_with_valid_search_form(self):
-        response = self.client.get(COOKS_LIST_URL, {"username": "dennie"})
+        response = self.client.get(COOKS_LIST_URL, {"username": "john"})
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "dennie")
+        self.assertContains(response, "john")
         self.assertNotContains(response, "ray")
 
     def test_cook_get_queryset_with_invalid_search_form(self):
-        response = self.client.get(COOKS_LIST_URL, {"username": 123})
+        response = self.client.get(COOKS_LIST_URL, {"username": "invalid"})
         self.assertEqual(response.status_code, 200)
         self.assertNotContains(response, "john")
         self.assertNotContains(response, "ray")
