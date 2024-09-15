@@ -1,10 +1,11 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
+from django.core.paginator import Paginator
 
 from kitchen.models import Dish, DishType, Ingredient
 from kitchen.forms import CookSearchForm
-
+from .db_test_data import users, dish_data
 
 COOKS_LIST_URL = reverse("kitchen:cooks-page")
 
@@ -20,20 +21,14 @@ class PrivateCookViewTest(TestCase):
             password="testpassword"
         )
 
-        get_user_model().objects.create_user(
-            username="john",
-            first_name="John",
-            last_name="Wick",
-            profile_picture="john.jpg",
-            password="testjohnwick"
-        )
-        get_user_model().objects.create_user(
-            username="ray",
-            first_name="Ray",
-            last_name="Charles",
-            profile_picture="ray.jpg",
-            password="testraycharles"
-        )
+        for user in users:
+            get_user_model().objects.create_user(
+                username=user["username"],
+                first_name=user["first_name"],
+                last_name=user["last_name"],
+                profile_picture=user["profile_picture"],
+                password=user["password"]
+            )
 
         cls.dish_type = DishType.objects.create(
             name="Main Course", 
@@ -48,39 +43,64 @@ class PrivateCookViewTest(TestCase):
             name="Cheese", 
             description="Cheddar cheese"
         )
-        cls.dish_data = [
-            {
-                "name": "Pizza",
-                "description": "Pizza description",
-                "price": 10.00,
-                "image": "pizza.png",
-                "freeze_time_str": "2024-09-10",
-                "ingredients": [cls.ingredient1, cls.ingredient2]
-            },
-            {
-                "name": "Pasta",
-                "description": "Pasta description",
-                "price": 9.00,
-                "image": "pasta.png",
-                "freeze_time_str": "2024-09-09",
-                "ingredients": [cls.ingredient1]
-            },
-        ]
 
-        for dish_data in cls.dish_data:
+        for data in dish_data:
             dish = Dish.objects.create(
-                name=dish_data["name"],
-                description=dish_data["description"],
-                price=dish_data["price"],
+                name=data["name"],
+                description=data["description"],
+                price=data["price"],
                 dish_type=cls.dish_type,
-                image=dish_data["image"]
+                image=data["image"]
             )
-            dish.ingredients.add(*dish_data["ingredients"])
+            dish.ingredients.add(cls.ingredient1, cls.ingredient2)
 
         cls.pizza = Dish.objects.get(name="Pizza")
 
     def setUp(self) -> None:
         self.client.force_login(self.user)
+        self.cooks_page_1 = self.client.get(COOKS_LIST_URL)
+        self.cooks_page_2 = self.client.get(COOKS_LIST_URL, {"page": 2})
+        self.all_cooks = get_user_model().objects.all()
+
+    def test_retrieve_cooks_per_paginated_page(self):
+        self.assertEqual(self.cooks_page_1.status_code, 200)
+        self.assertEqual(len(self.cooks_page_1.context["cooks"]), 6)
+
+        self.assertEqual(self.cooks_page_2.status_code, 200)
+        self.assertEqual(len(self.cooks_page_2.context["cooks"]), 1)
+
+        self.assertEqual(self.all_cooks.count(), 7)
+        self.assertEqual(
+            list(self.all_cooks),
+            list(self.cooks_page_1.context["cooks"]) +
+            list(self.cooks_page_2.context["cooks"])
+        )
+        self.assertTemplateUsed(self.cooks_page_1, "kitchen/all_cooks.html")
+
+    def test_cook_list_contains_correct_cooks_per_paginated_page(self):
+        first_page_6_cooks = self.all_cooks[:6]
+        last_page_1_cook = self.all_cooks[6]
+        
+        self.assertEqual(self.cooks_page_1.status_code, 200)
+        for cook in first_page_6_cooks:
+            self.assertContains(self.cooks_page_1, cook.username)
+        self.assertNotContains(self.cooks_page_1, last_page_1_cook.username)
+
+        self.assertEqual(self.cooks_page_2.status_code, 200)
+        self.assertContains(self.cooks_page_2, last_page_1_cook.username)
+        for cook in first_page_6_cooks:
+            if cook.username != "dennie":
+                self.assertNotContains(self.cooks_page_2, cook.username)
+
+        self.assertIsInstance(
+            self.cooks_page_1.context["paginator"],
+            Paginator
+        )
+        self.assertEqual(
+            str(self.cooks_page_1.context["page_obj"]),
+            "<Page 1 of 2>"
+        )
+        self.assertTrue(self.cooks_page_1.context["is_paginated"])
 
     def test_cook_get_context_data_receives_correct_search_form(self):
         response = self.client.get(COOKS_LIST_URL)
@@ -102,11 +122,11 @@ class PrivateCookViewTest(TestCase):
     def test_cook_create_get_context_data_receives_page_number(self):
         response = self.client.get(
             reverse("kitchen:cook-create"), 
-            {"page": 3}
+            {"page": 2}
         )
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "dennie")
-        self.assertEqual(int(response.context["page"]), 3)
+        self.assertEqual(int(response.context["page"]), 2)
 
     def test_toggle_assign_cook_to_existing_dish(self):
         self.user.dishes.add(self.pizza)
