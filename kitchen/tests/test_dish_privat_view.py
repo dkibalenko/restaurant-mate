@@ -5,6 +5,7 @@ from django.core.paginator import Paginator
 
 from kitchen.models import Dish, DishType, Ingredient
 from kitchen.forms import DishSearchForm
+from .db_test_data import dish_data
 
 
 DISHES_LIST_URL = reverse("kitchen:dishes-page")
@@ -34,42 +35,8 @@ class PrivateDishViewTest(TestCase):
             name="Cheese", 
             description="Cheddar cheese"
         )
-        cls.dish_data = [
-            {
-                "name": "Pizza",
-                "description": "Pizza description",
-                "price": 10.00,
-                "image": "pizza.png",
-                "freeze_time_str": "2024-09-10",
-                "ingredients": [cls.ingredient1, cls.ingredient2]
-            },
-            {
-                "name": "Pasta",
-                "description": "Pasta description",
-                "price": 9.00,
-                "image": "pasta.png",
-                "freeze_time_str": "2024-09-09",
-                "ingredients": [cls.ingredient1]
-            },
-            {
-                "name": "Salad",
-                "description": "Salad description",
-                "price": 8.00,
-                "image": "salad.png",
-                "freeze_time_str": "2024-09-08",
-                "ingredients": [cls.ingredient2]
-            },
-            {
-                "name": "Soup",
-                "description": "Soup description",
-                "price": 7.00,
-                "image": "soup.png",
-                "freeze_time_str": "2024-09-07",
-                "ingredients": [cls.ingredient1, cls.ingredient2]
-            }
-        ]
 
-        for data in cls.dish_data:
+        for data in dish_data:
             dish = Dish.objects.create(
                 name=data["name"],
                 description=data["description"],
@@ -77,7 +44,7 @@ class PrivateDishViewTest(TestCase):
                 dish_type=cls.dish_type,
                 image=data["image"]
             )
-            dish.ingredients.add(*data["ingredients"])
+            dish.ingredients.add(cls.ingredient1, cls.ingredient2)
 
 
     def setUp(self) -> None:
@@ -89,12 +56,12 @@ class PrivateDishViewTest(TestCase):
 
     def test_retrieve_dishes_per_paginated_page(self):
         self.assertEqual(self.dishes_page_1.status_code, 200)
-        self.assertEqual(len(self.dishes_page_1.context["dishes"]), 3)
+        self.assertEqual(len(self.dishes_page_1.context["dishes"]), 6)
 
         self.assertEqual(self.dishes_page_2.status_code, 200)
         self.assertEqual(len(self.dishes_page_2.context["dishes"]), 1)
 
-        self.assertEqual(self.all_dishes.count(), 4)
+        self.assertEqual(self.all_dishes.count(), 7)
         self.assertEqual(
             list(self.all_dishes),
             list(self.dishes_page_1.context["dishes"]) +
@@ -103,29 +70,28 @@ class PrivateDishViewTest(TestCase):
         self.assertTemplateUsed(self.dishes_page_1, "kitchen/dishes_list.html")
 
     def test_dish_list_contains_correct_dishes_per_paginated_page(self):
-        response_page_1 = self.dishes_page_1
-        response_page_2 = self.dishes_page_2
-        self.assertEqual(response_page_1.status_code, 200)
-        self.assertContains(response_page_1, "Pizza")
-        self.assertContains(response_page_1,"Pasta")
-        self.assertContains(response_page_1,"Salad")
-        self.assertNotContains(response_page_1,"Soup")
+        first_page_6_dishes = self.all_dishes[:6]
+        last_page_1_dish = self.all_dishes[6]
+        
+        self.assertEqual(self.dishes_page_1.status_code, 200)
+        for dish in first_page_6_dishes:
+            self.assertContains(self.dishes_page_1, dish.name)
+        self.assertNotContains(self.dishes_page_1, last_page_1_dish.name)
 
-        self.assertEqual(response_page_2.status_code, 200)
-        self.assertContains(response_page_2,"Soup")
-        self.assertNotContains(response_page_2,"Pizza")
-        self.assertNotContains(response_page_2,"Pasta")
-        self.assertNotContains(response_page_2,"Salad")
+        self.assertEqual(self.dishes_page_2.status_code, 200)
+        self.assertContains(self.dishes_page_2, last_page_1_dish.name)
+        for dish in first_page_6_dishes:
+            self.assertNotContains(self.dishes_page_2, dish.name)
 
         self.assertIsInstance(
-            response_page_1.context["paginator"],
+            self.dishes_page_1.context["paginator"],
             Paginator
         )
         self.assertEqual(
-            str(response_page_1.context["page_obj"]),
+            str(self.dishes_page_1.context["page_obj"]),
             "<Page 1 of 2>"
         )
-        self.assertTrue(response_page_1.context["is_paginated"])
+        self.assertTrue(self.dishes_page_1.context["is_paginated"])
 
     def test_dish_get_context_data_receives_correct_searchform(self):
         response = self.client.get(DISHES_LIST_URL)
