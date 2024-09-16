@@ -9,7 +9,7 @@ from .mixins import RequiredFieldsMixin
 
 def profile_picture_extension_validator():
     """
-    Returns a forms.ImageField instance with a validator that checks if the 
+    Returns a forms.ImageField instance with a validator that checks if the
     uploaded file has a valid image extension.
 
     The allowed extensions are: .jpg, .png, .jpeg.
@@ -17,7 +17,7 @@ def profile_picture_extension_validator():
     The field is not required and uses a forms.FileInput widget.
 
     Returns:
-        forms.ImageField: A forms.ImageField instance with the specified 
+        forms.ImageField: A forms.ImageField instance with the specified
         validator and widget.
     """
     profile_picture = forms.ImageField(
@@ -35,7 +35,7 @@ def profile_picture_extension_validator():
 class CookCreationForm(RequiredFieldsMixin, UserCreationForm):
     profile_picture = profile_picture_extension_validator()
     required_fields = ["first_name", "last_name"]
-    
+
     class Meta(UserCreationForm.Meta):
         model = Cook
         fields = UserCreationForm.Meta.fields + (
@@ -49,6 +49,7 @@ class CookCreationForm(RequiredFieldsMixin, UserCreationForm):
 
 class CookUpdateForm(RequiredFieldsMixin, forms.ModelForm):
     profile_picture = profile_picture_extension_validator()
+
     class Meta:
         model = Cook
         fields = (
@@ -71,6 +72,7 @@ class DishForm(forms.ModelForm):
         queryset=Ingredient.objects.all(),
         widget=forms.CheckboxSelectMultiple,
     )
+
     class Meta:
         model = Dish
         exclude = ("created_at", "updated_at",)
