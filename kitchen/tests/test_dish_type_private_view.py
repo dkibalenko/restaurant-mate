@@ -11,7 +11,7 @@ from .db_test_data import dish_types
 DISH_TYPES_LIST_URL = reverse("kitchen:dish-types-page")
 
 
-class PrivateListViewTest(TestCase):
+class PrivateDishTypeListViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         cls.user = get_user_model().objects.create_user(
@@ -92,3 +92,10 @@ class PrivateListViewTest(TestCase):
         self.assertContains(response, "invalid")
         for dish_type in self.all_dish_types:
             self.assertNotContains(response, dish_type.name)
+
+    def test_dish_type_get_queryset_with_no_search_form_data(self):
+        self.assertEqual(
+            list(self.all_dish_types),
+            list(self.dish_types_page_1.context["dish_types"]) +
+            list(self.dish_types_page_2.context["dish_types"])
+        )

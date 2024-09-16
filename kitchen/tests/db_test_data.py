@@ -120,3 +120,30 @@ dish_types = [
         "description": "A muffin description"
     }
 ]
+
+ingredients = [
+    {
+        "name": "water",
+        "description": "A water description"
+    },
+    {
+        "name": "salt",
+        "description": "A salt description"
+    },
+    {
+        "name": "sugar",
+        "description": "A sugar description"
+    },
+    {
+        "name": "tomato",
+        "description": "A tomato description"
+    },
+    {
+        "name": "cheese",
+        "description": "A cheese description"
+    },
+    {
+        "name": "wheat flour",
+        "description": "A wheat flour description"
+    }
+]
