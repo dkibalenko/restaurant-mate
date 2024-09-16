@@ -93,3 +93,30 @@ dish_data = [
         "freeze_time_str": "2024-09-04",
     }
 ]
+
+dish_types = [
+    {
+        "name": "biscuit",
+        "description": "A biscuit description"
+    },
+    {
+        "name": "cake",
+        "description": "A cake description"
+    },
+    {
+        "name": "pie",
+        "description": "A pie description"
+    },
+    {
+        "name": "pudding",
+        "description": "A pudding description"
+    },
+    {
+        "name": "cookie",
+        "description": "A cookie description"
+    },
+    {
+        "name": "muffin",
+        "description": "A muffin description"
+    }
+]
