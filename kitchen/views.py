@@ -7,13 +7,23 @@ from django.views import generic
 from django.urls import reverse_lazy
 
 from .models import Dish, Cook, DishType, Ingredient
-from .forms import CookCreationForm, CookUpdateForm, DishForm, CookSearchForm, DishSearchForm, DishTypeSearchForm, IngredientSearchForm
+from .forms import (
+    CookCreationForm,
+    CookUpdateForm,
+    DishForm,
+    CookSearchForm,
+    DishSearchForm,
+    DishTypeSearchForm,
+    IngredientSearchForm
+)
 
 
 @login_required
 def index(request: HttpRequest) -> HttpResponse:
-    dishes = Dish.objects.all().order_by("-updated_at")[:3].prefetch_related("ingredients")
+    dishes = Dish.objects.all().order_by("-updated_at")[:3] \
+        .prefetch_related("ingredients")
     return render(request, "kitchen/index.html", {"dishes": dishes})
+
 
 @login_required
 def custom_logout_view(request: HttpRequest) -> HttpResponse:
@@ -36,7 +46,7 @@ class CookListView(LoginRequiredMixin, generic.ListView):
             initial={"username": username}
         )
         return context
-    
+
     def get_queryset(self):
         queryset = get_user_model().objects.all()
         form = CookSearchForm(self.request.GET)
@@ -92,7 +102,7 @@ class DishListView(LoginRequiredMixin, generic.ListView):
             initial={"name": name}
         )
         return context
-    
+
     def get_queryset(self):
         queryset = Dish.objects.all().prefetch_related("ingredients")
         form = DishSearchForm(self.request.GET)
@@ -143,7 +153,7 @@ class DishTypeListView(LoginRequiredMixin, generic.ListView):
             initial={"name": name}
         )
         return context
-    
+
     def get_queryset(self):
         queryset = DishType.objects.all()
         form = DishTypeSearchForm(self.request.GET)
@@ -189,7 +199,7 @@ class IngredientListView(LoginRequiredMixin, generic.ListView):
             initial={"name": name}
         )
         return context
-    
+
     def get_queryset(self):
         queryset = Ingredient.objects.all()
         form = IngredientSearchForm(self.request.GET)
@@ -229,4 +239,7 @@ def toggle_assign_to_dish(request, pk):
         cook.dishes.remove(pk)
     else:
         cook.dishes.add(pk)
-    return HttpResponseRedirect(reverse_lazy("kitchen:dish-detail-page", args=[pk]))
+    return HttpResponseRedirect(
+        reverse_lazy("kitchen:dish-detail-page",
+                     args=[pk])
+    )
