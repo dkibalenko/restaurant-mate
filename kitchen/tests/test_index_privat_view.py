@@ -19,19 +19,19 @@ class PrivateIndexViewTest(TestCase):
         self.client.login(username="dennie", password="testpassword")
 
         self.dish_type = DishType.objects.create(
-            name="Main Course", 
+            name="Main Course",
             description="Main course dishes"
         )
-        
+
         self.ingredient1 = Ingredient.objects.create(
-            name="Tomato", 
+            name="Tomato",
             description="Fresh tomato"
         )
         self.ingredient2 = Ingredient.objects.create(
-            name="Cheese", 
+            name="Cheese",
             description="Cheddar cheese"
         )
-        
+
         for data in dish_data:
             with freeze_time(data["freeze_time_str"]):
                 dish = Dish.objects.create(

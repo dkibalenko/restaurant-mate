@@ -15,7 +15,7 @@ class CustomLogoutViewTest(TestCase):
         self.client.login(username="dennie", password="testpassword")
 
     def test_get_logout_view(self):
-        response  = self.client.get(reverse("logout"))
+        response = self.client.get(reverse("logout"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "registration/logged_out.html")
 
@@ -29,7 +29,7 @@ class CustomLogoutViewTest(TestCase):
         self.client.post(reverse("logout"))
         response = self.client.get(MAIN_PAGE_URL)
         expected_redirect_url = (
-            f"{reverse('login')}?"
+            f"{reverse("login")}?"
             f"next=/{MAIN_PAGE_URL}/"
         )
 
@@ -37,7 +37,7 @@ class CustomLogoutViewTest(TestCase):
         parsed_expected_redirect_url = urlparse(expected_redirect_url)
 
         self.assertEqual(
-            parsed_response_url.path, 
+            parsed_response_url.path,
             parsed_expected_redirect_url.path
         )
 
@@ -51,6 +51,6 @@ class CustomLogoutViewTest(TestCase):
         )
 
         self.assertEqual(
-            response_next_parameter, 
+            response_next_parameter,
             expected_redirect_url_next_parameter
         )

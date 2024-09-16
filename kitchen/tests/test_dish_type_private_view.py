@@ -32,7 +32,7 @@ class PrivateDishTypeListViewTest(TestCase):
         self.client.force_login(self.user)
         self.dish_types_page_1 = self.client.get(DISH_TYPES_LIST_URL)
         self.dish_types_page_2 = self.client.get(
-            DISH_TYPES_LIST_URL, 
+            DISH_TYPES_LIST_URL,
             {"page": 2}
         )
         self.all_dish_types = DishType.objects.all()
@@ -47,29 +47,29 @@ class PrivateDishTypeListViewTest(TestCase):
         self.assertEqual(self.all_dish_types.count(), 6)
         self.assertEqual(
             list(self.all_dish_types),
-            list(self.dish_types_page_1.context["dish_types"]) +
-            list(self.dish_types_page_2.context["dish_types"])
+            list(self.dish_types_page_1.context["dish_types"])
+            + list(self.dish_types_page_2.context["dish_types"])
         )
         self.assertTemplateUsed(
-            self.dish_types_page_1, 
+            self.dish_types_page_1,
             "kitchen/dish_type_list.html"
         )
 
     def test_dish_type_list_contains_correct_data_per_paginated_page(self):
         first_page_5_dish_types = self.all_dish_types[:5]
         last_page_1_dish_type = self.all_dish_types[5]
-        
+
         self.assertEqual(self.dish_types_page_1.status_code, 200)
         for dish_type in first_page_5_dish_types:
             self.assertContains(self.dish_types_page_1, dish_type.name)
         self.assertNotContains(
-            self.dish_types_page_1, 
+            self.dish_types_page_1,
             last_page_1_dish_type.name
         )
 
         self.assertEqual(self.dish_types_page_2.status_code, 200)
         self.assertContains(
-            self.dish_types_page_2, 
+            self.dish_types_page_2,
             last_page_1_dish_type.name
         )
         for dish_type in first_page_5_dish_types:
@@ -89,7 +89,7 @@ class PrivateDishTypeListViewTest(TestCase):
         response = self.client.get(DISH_TYPES_LIST_URL)
         self.assertEqual(response.status_code, 200)
         self.assertIsInstance(
-            response.context["search_form"], 
+            response.context["search_form"],
             DishTypeSearchForm
         )
 
@@ -111,6 +111,6 @@ class PrivateDishTypeListViewTest(TestCase):
     def test_dish_type_get_queryset_with_no_search_form_data(self):
         self.assertEqual(
             list(self.all_dish_types),
-            list(self.dish_types_page_1.context["dish_types"]) +
-            list(self.dish_types_page_2.context["dish_types"])
+            list(self.dish_types_page_1.context["dish_types"])
+            + list(self.dish_types_page_2.context["dish_types"])
         )

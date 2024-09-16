@@ -23,16 +23,16 @@ class PrivateDishViewTest(TestCase):
         )
 
         cls.dish_type = DishType.objects.create(
-            name="Main Course", 
+            name="Main Course",
             description="Main course dishes"
         )
-        
+
         cls.ingredient1 = Ingredient.objects.create(
-            name="Tomato", 
+            name="Tomato",
             description="Fresh tomato"
         )
         cls.ingredient2 = Ingredient.objects.create(
-            name="Cheese", 
+            name="Cheese",
             description="Cheddar cheese"
         )
 
@@ -45,7 +45,6 @@ class PrivateDishViewTest(TestCase):
                 image=data["image"]
             )
             dish.ingredients.add(cls.ingredient1, cls.ingredient2)
-
 
     def setUp(self) -> None:
         self.client.force_login(self.user)
@@ -64,18 +63,18 @@ class PrivateDishViewTest(TestCase):
         self.assertEqual(self.all_dishes.count(), 7)
         self.assertEqual(
             list(self.all_dishes),
-            list(self.dishes_page_1.context["dishes"]) +
-            list(self.dishes_page_2.context["dishes"])
+            list(self.dishes_page_1.context["dishes"])
+            + list(self.dishes_page_2.context["dishes"])
         )
         self.assertTemplateUsed(
-            self.dishes_page_1, 
+            self.dishes_page_1,
             "kitchen/dishes_list.html"
         )
 
     def test_dish_list_contains_correct_dishes_per_paginated_page(self):
         first_page_6_dishes = self.all_dishes[:6]
         last_page_1_dish = self.all_dishes[6]
-        
+
         self.assertEqual(self.dishes_page_1.status_code, 200)
         for dish in first_page_6_dishes:
             self.assertContains(self.dishes_page_1, dish.name)
@@ -116,6 +115,6 @@ class PrivateDishViewTest(TestCase):
     def test_dish_get_queryset_with_no_search_form_data(self):
         self.assertEqual(
             list(self.all_dishes),
-            list(self.dishes_page_1.context["dishes"]) +
-            list(self.dishes_page_2.context["dishes"])
+            list(self.dishes_page_1.context["dishes"])
+            + list(self.dishes_page_2.context["dishes"])
         )

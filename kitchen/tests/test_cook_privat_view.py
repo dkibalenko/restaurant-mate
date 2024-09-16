@@ -31,16 +31,16 @@ class PrivateCookViewTest(TestCase):
             )
 
         cls.dish_type = DishType.objects.create(
-            name="Main Course", 
+            name="Main Course",
             description="Main course dishes"
         )
-        
+
         cls.ingredient1 = Ingredient.objects.create(
-            name="Tomato", 
+            name="Tomato",
             description="Fresh tomato"
         )
         cls.ingredient2 = Ingredient.objects.create(
-            name="Cheese", 
+            name="Cheese",
             description="Cheddar cheese"
         )
 
@@ -72,15 +72,15 @@ class PrivateCookViewTest(TestCase):
         self.assertEqual(self.all_cooks.count(), 7)
         self.assertEqual(
             list(self.all_cooks),
-            list(self.cooks_page_1.context["cooks"]) +
-            list(self.cooks_page_2.context["cooks"])
+            list(self.cooks_page_1.context["cooks"])
+            + list(self.cooks_page_2.context["cooks"])
         )
         self.assertTemplateUsed(self.cooks_page_1, "kitchen/all_cooks.html")
 
     def test_cook_list_contains_correct_cooks_per_paginated_page(self):
         first_page_6_cooks = self.all_cooks[:6]
         last_page_1_cook = self.all_cooks[6]
-        
+
         self.assertEqual(self.cooks_page_1.status_code, 200)
         for cook in first_page_6_cooks:
             self.assertContains(self.cooks_page_1, cook.username)
@@ -121,7 +121,7 @@ class PrivateCookViewTest(TestCase):
 
     def test_cook_create_get_context_data_receives_page_number(self):
         response = self.client.get(
-            reverse("kitchen:cook-create"), 
+            reverse("kitchen:cook-create"),
             {"page": 2}
         )
         self.assertEqual(response.status_code, 200)
@@ -131,7 +131,7 @@ class PrivateCookViewTest(TestCase):
     def test_toggle_assign_cook_to_existing_dish(self):
         self.user.dishes.add(self.pizza)
         self.client.get(reverse(
-            "kitchen:toggle-dish-assign", 
+            "kitchen:toggle-dish-assign",
             args=[self.pizza.pk])
         )
 
@@ -139,7 +139,7 @@ class PrivateCookViewTest(TestCase):
 
     def test_toggle_assign_cook_to_new_dish(self):
         self.client.get(reverse(
-            "kitchen:toggle-dish-assign", 
+            "kitchen:toggle-dish-assign",
             args=[self.pizza.pk])
         )
         self.assertIn(self.pizza, self.user.dishes.all())

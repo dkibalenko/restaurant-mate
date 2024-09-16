@@ -31,7 +31,7 @@ class PublicViewTest(TestCase):
             response,
             "/accounts/login/?next=%2Fdish_types%2F"
         )
-    
+
     def test_ingredient_list_login_required_and_redirect_to_login_page(self):
         response = self.client.get(reverse("kitchen:ingredients-page"))
         self.assertNotEqual(response.status_code, 200)

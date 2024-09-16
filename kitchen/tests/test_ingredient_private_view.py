@@ -47,8 +47,8 @@ class PrivateIngredientListViewTest(TestCase):
         self.assertEqual(self.all_ingredients.count(), 6)
         self.assertEqual(
             list(self.all_ingredients),
-            list(self.ingredients_page_1.context["ingredients"]) +
-            list(self.ingredients_page_2.context["ingredients"])
+            list(self.ingredients_page_1.context["ingredients"])
+            + list(self.ingredients_page_2.context["ingredients"])
         )
         self.assertTemplateUsed(self.ingredients_page_1,
                                 "kitchen/ingredient_list.html")
@@ -103,6 +103,6 @@ class PrivateIngredientListViewTest(TestCase):
     def test_ingredient_get_queryset_with_no_search_form_data(self):
         self.assertEqual(
             list(self.all_ingredients),
-            list(self.ingredients_page_1.context["ingredients"]) +
-            list(self.ingredients_page_2.context["ingredients"])
+            list(self.ingredients_page_1.context["ingredients"])
+            + list(self.ingredients_page_2.context["ingredients"])
         )

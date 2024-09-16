@@ -33,7 +33,7 @@ class AdminSiteTests(TestCase):
         )
         self.admin_cook_list_url = reverse("admin:kitchen_cook_changelist")
         self.admin_cook_detail_url = reverse(
-            "admin:kitchen_cook_change", 
+            "admin:kitchen_cook_change",
             args=[self.cook.pk]
         )
 
@@ -70,8 +70,8 @@ class AdminSiteTests(TestCase):
         self.assertContains(response, 'name="q"')
 
         search_queries = [
-            self.cook.username, 
-            self.cook.first_name, 
+            self.cook.username,
+            self.cook.first_name,
             self.cook.last_name
         ]
         for query in search_queries:
@@ -90,11 +90,11 @@ class AdminSiteTests(TestCase):
         Tests that the slug field is shown as read-only in the admin site.
         """
         response = self.client.get(self.admin_cook_detail_url)
-        
+
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, self.cook.slug)
         self.assertContains(
-            response, 
+            response,
             f'<div class="readonly">{self.cook.slug}</div>'
         )
         self.assertNotContains(response, 'name="slug"')
