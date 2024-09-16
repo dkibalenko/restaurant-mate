@@ -40,7 +40,7 @@ class Cook(AbstractUser):
 
     def __str__(self) -> str:
         return f"{self.username}: ({self.full_name()})"
-    
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(f"{self.first_name}-{self.last_name}")
@@ -56,7 +56,7 @@ class Ingredient(models.Model):
 
     def __str__(self) -> str:
         return self.name
-    
+
     class Meta:
         ordering = ("name",)
 
@@ -92,6 +92,6 @@ class Dish(models.Model):
 
     def __str__(self) -> str:
         return self.name
-    
+
     def get_absolute_url(self):
         return reverse("kitchen:dish-detail-page", kwargs={"pk": self.pk})
