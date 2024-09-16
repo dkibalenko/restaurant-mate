@@ -4,6 +4,8 @@ from django.test import TestCase
 from django.urls import reverse
 
 from kitchen.models import DishType, Ingredient, Dish
+from .db_test_data import dish_data
+
 
 MAIN_PAGE_URL = reverse("kitchen:main-page")
 
@@ -29,53 +31,17 @@ class PrivateIndexViewTest(TestCase):
             name="Cheese", 
             description="Cheddar cheese"
         )
-
-        self.dish_data = [
-            {
-                "name": "Pizza",
-                "description": "Pizza description",
-                "price": 10.00,
-                "image": "pizza.png",
-                "freeze_time_str": "2024-09-10",
-                "ingredients": [self.ingredient1, self.ingredient2]
-            },
-            {
-                "name": "Pasta",
-                "description": "Pasta description",
-                "price": 9.00,
-                "image": "pasta.png",
-                "freeze_time_str": "2024-09-09",
-                "ingredients": [self.ingredient1]
-            },
-            {
-                "name": "Salad",
-                "description": "Salad description",
-                "price": 8.00,
-                "image": "salad.png",
-                "freeze_time_str": "2024-09-08",
-                "ingredients": [self.ingredient2]
-            },
-            {
-                "name": "Soup",
-                "description": "Soup description",
-                "price": 7.00,
-                "image": "soup.png",
-                "freeze_time_str": "2024-09-07",
-                "ingredients": [self.ingredient1, self.ingredient2]
-            }
-        ]
         
-        for dish_data in self.dish_data:
-            with freeze_time(dish_data["freeze_time_str"]):
+        for data in dish_data:
+            with freeze_time(data["freeze_time_str"]):
                 dish = Dish.objects.create(
-                    name=dish_data["name"],
-                    description=dish_data["description"],
-                    price=dish_data["price"],
+                    name=data["name"],
+                    description=data["description"],
+                    price=data["price"],
                     dish_type=self.dish_type,
-                    image=dish_data["image"]
+                    image=data["image"]
                 )
-                dish.ingredients.add(*dish_data["ingredients"])
-
+                dish.ingredients.add(self.ingredient1, self.ingredient2)
 
     def test_index_view_uses_correct_template(self):
         response = self.client.get(MAIN_PAGE_URL)

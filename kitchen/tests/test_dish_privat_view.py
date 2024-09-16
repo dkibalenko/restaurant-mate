@@ -67,7 +67,10 @@ class PrivateDishViewTest(TestCase):
             list(self.dishes_page_1.context["dishes"]) +
             list(self.dishes_page_2.context["dishes"])
         )
-        self.assertTemplateUsed(self.dishes_page_1, "kitchen/dishes_list.html")
+        self.assertTemplateUsed(
+            self.dishes_page_1, 
+            "kitchen/dishes_list.html"
+        )
 
     def test_dish_list_contains_correct_dishes_per_paginated_page(self):
         first_page_6_dishes = self.all_dishes[:6]
