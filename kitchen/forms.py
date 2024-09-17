@@ -5,7 +5,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.validators import FileExtensionValidator
 
 from .models import Cook, Dish, Ingredient
-from .mixins import RequiredFieldsMixin
 
 
 def profile_picture_extension_validator():
@@ -52,7 +51,7 @@ class CookCreationForm(UserCreationForm):
         self.fields["last_name"].required = True
 
 
-class CookUpdateForm(RequiredFieldsMixin, forms.ModelForm):
+class CookUpdateForm(forms.ModelForm):
     profile_picture = profile_picture_extension_validator()
 
     class Meta:
