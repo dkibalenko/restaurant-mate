@@ -1,3 +1,4 @@
+from typing import Any
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
@@ -32,9 +33,8 @@ def profile_picture_extension_validator():
     return profile_picture
 
 
-class CookCreationForm(RequiredFieldsMixin, UserCreationForm):
+class CookCreationForm(UserCreationForm):
     profile_picture = profile_picture_extension_validator()
-    required_fields = ["first_name", "last_name"]
 
     class Meta(UserCreationForm.Meta):
         model = Cook
@@ -45,6 +45,11 @@ class CookCreationForm(RequiredFieldsMixin, UserCreationForm):
             "years_of_experience",
             "profile_picture",
         )
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+        self.fields["first_name"].required = True
+        self.fields["last_name"].required = True
 
 
 class CookUpdateForm(RequiredFieldsMixin, forms.ModelForm):
