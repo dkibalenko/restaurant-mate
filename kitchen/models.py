@@ -32,7 +32,7 @@ class Cook(AbstractUser):
     )
     slug = models.SlugField(unique=True, blank=True, db_index=True)
 
-    def full_name(self):
+    def full_name(self) -> str:
         return f"{self.first_name} {self.last_name}"
 
     class Meta:
@@ -41,12 +41,12 @@ class Cook(AbstractUser):
     def __str__(self) -> str:
         return f"{self.username}: ({self.full_name()})"
 
-    def save(self, *args, **kwargs):
+    def save(self, *args, **kwargs) -> None:
         if not self.slug:
             self.slug = slugify(f"{self.first_name}-{self.last_name}")
         super().save(*args, **kwargs)
 
-    def get_absolute_url(self):
+    def get_absolute_url(self) -> str:
         return reverse("kitchen:cook-detail-page", kwargs={"slug": self.slug})
 
 
@@ -93,5 +93,5 @@ class Dish(models.Model):
     def __str__(self) -> str:
         return self.name
 
-    def get_absolute_url(self):
+    def get_absolute_url(self) -> str:
         return reverse("kitchen:dish-detail-page", kwargs={"pk": self.pk})
