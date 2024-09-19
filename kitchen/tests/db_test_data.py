@@ -1,46 +1,46 @@
 users = [
-  {
-      "username": "john",
-      "first_name": "John",
-      "last_name": "Wick",
-      "profile_picture": "john.jpg",
-      "password": "testjohnwick"
-  },
-  {
-      "username": "ray",
-      "first_name": "Ray",
-      "last_name": "Charles",
-      "profile_picture": "ray.jpg",
-      "password": "testraycharles"
-  },
-  {
-      "username": "alice",
-      "first_name": "Alice",
-      "last_name": "Wonderland",
-      "profile_picture": "alice.jpg",
-      "password": "testalicewonderland"
-  },
-  {
-      "username": "bob",
-      "first_name": "Bob",
-      "last_name": "Builder",
-      "profile_picture": "bob.jpg",
-      "password": "testbobbuilder"
-  },
-  {
-      "username": "charlie",
-      "first_name": "Charlie",
-      "last_name": "Brown",
-      "profile_picture": "charlie.jpg",
-      "password": "testcharliebrown"
-  },
-  {
-      "username": "diana",
-      "first_name": "Diana",
-      "last_name": "Prince",
-      "profile_picture": "diana.jpg",
-      "password": "testdianaprince"
-  }
+    {
+        "username": "john",
+        "first_name": "John",
+        "last_name": "Wick",
+        "profile_picture": "john.jpg",
+        "password": "testjohnwick"
+    },
+    {
+        "username": "ray",
+        "first_name": "Ray",
+        "last_name": "Charles",
+        "profile_picture": "ray.jpg",
+        "password": "testraycharles"
+    },
+    {
+        "username": "alice",
+        "first_name": "Alice",
+        "last_name": "Wonderland",
+        "profile_picture": "alice.jpg",
+        "password": "testalicewonderland"
+    },
+    {
+        "username": "bob",
+        "first_name": "Bob",
+        "last_name": "Builder",
+        "profile_picture": "bob.jpg",
+        "password": "testbobbuilder"
+    },
+    {
+        "username": "charlie",
+        "first_name": "Charlie",
+        "last_name": "Brown",
+        "profile_picture": "charlie.jpg",
+        "password": "testcharliebrown"
+    },
+    {
+        "username": "diana",
+        "first_name": "Diana",
+        "last_name": "Prince",
+        "profile_picture": "diana.jpg",
+        "password": "testdianaprince"
+    }
 ]
 dish_data = [
     {

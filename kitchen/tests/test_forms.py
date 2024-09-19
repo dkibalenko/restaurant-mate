@@ -8,7 +8,7 @@ from PIL import Image
 import io
 
 from kitchen.forms import (
-    CookCreationForm, 
+    CookCreationForm,
     CookUpdateForm,
     ProfilePictureMixin
 )
@@ -44,29 +44,28 @@ class TestProfilePictureMixin(TestCase):
         )
         self.assertIn("profile_picture", form.fields)
         self.assertIsInstance(
-            form.fields["profile_picture"], 
+            form.fields["profile_picture"],
             forms.ImageField
         )
-        
+
         validators = form.fields["profile_picture"].validators
         file_extension_validator = next(
             (
-                validator 
-                for validator 
-                in validators 
-                if isinstance(validator,FileExtensionValidator)
+                validator
+                for validator
+                in validators
+                if isinstance(validator, FileExtensionValidator)
             ),
-                None
+            None
         )
         self.assertIsNotNone(
-            file_extension_validator, 
+            file_extension_validator,
             "FileExtensionValidator not found in profile_picture validators"
         )
         self.assertEqual(
-            file_extension_validator.allowed_extensions, 
+            file_extension_validator.allowed_extensions,
             ["jpg", "png", "jpeg"]
         )
-
 
     def test_profile_picture_mixin_with_valid_image_extension(self):
         valid_files = [
@@ -83,10 +82,10 @@ class TestProfilePictureMixin(TestCase):
                 content=self.image_content,
             ),
         ]
-        
-        for file in valid_files:
+
+        for valid_file in valid_files:
             form = ProfilePictureMixin(
-                files={"profile_picture": file}
+                files={"profile_picture": valid_file}
             )
             self.assertTrue(form.is_valid())
 
@@ -101,9 +100,9 @@ class TestProfilePictureMixin(TestCase):
                 content=self.image_content,
             ),
         ]
-        for file in invalid_files:
+        for valid_file in invalid_files:
             form = ProfilePictureMixin(
-                files={"profile_picture": file}
+                files={"profile_picture": valid_file}
             )
             self.assertFalse(form.is_valid())
             self.assertIn("profile_picture", form.errors)
@@ -135,28 +134,28 @@ class CookFormTest(TestCase):
             ),
         }
         self.form = CookCreationForm(
-            data=self.form_data, 
+            data=self.form_data,
             files=self.profile_picture
         )
 
         self.testing_forms = (CookCreationForm, CookUpdateForm)
 
     def test_create_update_forms_custom_fields_presented(self):
-            for testing_form in self.testing_forms:
-                form = testing_form(
-                    data=self.form_data, 
-                    files=self.profile_picture
-                )
-                if isinstance(form, CookCreationForm):
-                    self.assertEqual(len(form.fields), 9)
-                else:
-                    self.assertEqual(len(form.fields), 7)
-                self.assertIn("first_name", form.fields)
-                self.assertIn("last_name", form.fields)
-                self.assertIn("email", form.fields)
-                self.assertIn("years_of_experience", form.fields)
-                self.assertIn("profile_picture", form.fields)
-                self.assertIn("bio", form.fields)
+        for testing_form in self.testing_forms:
+            form = testing_form(
+                data=self.form_data,
+                files=self.profile_picture
+            )
+            if isinstance(form, CookCreationForm):
+                self.assertEqual(len(form.fields), 9)
+            else:
+                self.assertEqual(len(form.fields), 7)
+            self.assertIn("first_name", form.fields)
+            self.assertIn("last_name", form.fields)
+            self.assertIn("email", form.fields)
+            self.assertIn("years_of_experience", form.fields)
+            self.assertIn("profile_picture", form.fields)
+            self.assertIn("bio", form.fields)
 
     def test_form_custom_required_fields(self):
         form = CookCreationForm(
@@ -190,7 +189,7 @@ class CookFormTest(TestCase):
             "years_of_experience": 5,
         }
         form = CookCreationForm(
-            data=invalid_form_data, 
+            data=invalid_form_data,
             files=self.profile_picture
         )
         self.assertFalse(form.is_valid())
@@ -199,11 +198,11 @@ class CookFormTest(TestCase):
 
     def test_form_with_invalid_profile_picture_extension(self):
         invalid_file = SimpleUploadedFile(
-                name="test_image.gif",
-                content=self.image_content,
-            )
+            name="test_image.gif",
+            content=self.image_content,
+        )
         form = CookCreationForm(
-            data=self.form_data, 
+            data=self.form_data,
             files={"profile_picture": invalid_file}
         )
         self.assertFalse(form.is_valid())
