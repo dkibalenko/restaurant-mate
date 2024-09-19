@@ -6,3 +6,4 @@ uploads
 kitchen/static/kitchen/images
 .env
 .vscode/
+.flake8
