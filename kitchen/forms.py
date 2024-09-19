@@ -7,33 +7,18 @@ from django.core.validators import FileExtensionValidator
 from .models import Cook, Dish, Ingredient
 
 
-def profile_picture_extension_validator():
-    """
-    Returns a forms.ImageField instance with a validator that checks if the
-    uploaded file has a valid image extension.
-
-    The allowed extensions are: .jpg, .png, .jpeg.
-
-    The field is not required and uses a forms.FileInput widget.
-
-    Returns:
-        forms.ImageField: A forms.ImageField instance with the specified
-        validator and widget.
-    """
+class ProfilePictureMixin(forms.Form):
     profile_picture = forms.ImageField(
         validators=[
             FileExtensionValidator(
-                allowed_extensions=["jpg", "png", "jpeg"]
+                allowed_extensions=["jpg", "png", "jpeg"],
             )
         ],
         widget=forms.FileInput
     )
 
-    return profile_picture
 
-
-class CookCreationForm(UserCreationForm):
-    profile_picture = profile_picture_extension_validator()
+class CookCreationForm(ProfilePictureMixin, UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
         model = Cook
@@ -43,6 +28,7 @@ class CookCreationForm(UserCreationForm):
             "email",
             "years_of_experience",
             "profile_picture",
+            "bio"
         )
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
@@ -51,8 +37,7 @@ class CookCreationForm(UserCreationForm):
         self.fields["last_name"].required = True
 
 
-class CookUpdateForm(forms.ModelForm):
-    profile_picture = profile_picture_extension_validator()
+class CookUpdateForm(ProfilePictureMixin, forms.ModelForm):
 
     class Meta:
         model = Cook
