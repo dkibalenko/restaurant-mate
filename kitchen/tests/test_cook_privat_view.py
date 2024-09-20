@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
 from django.core.paginator import Paginator
+from django.db.models import QuerySet
 
 from kitchen.models import Dish, DishType, Ingredient
 from kitchen.forms import CookSearchForm
@@ -112,6 +113,15 @@ class PrivateCookViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "john")
         self.assertNotContains(response, "ray")
+
+    def test_cook_get_queryset_with_no_search_form(self):
+        response = self.client.get(COOKS_LIST_URL)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.context["cooks"]), 6)
+        self.assertIsInstance(
+            response.context["cooks"],
+            QuerySet[get_user_model()]
+        )
 
     def test_cook_get_queryset_with_invalid_search_form(self):
         response = self.client.get(COOKS_LIST_URL, {"username": "invalid"})
