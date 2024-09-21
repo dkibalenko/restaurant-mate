@@ -20,22 +20,17 @@ from .forms import (
 )
 
 
-@login_required
-def index(request: HttpRequest) -> HttpResponse:
+class IndexView(LoginRequiredMixin, generic.ListView):
     """
-    Handles HTTP requests to the index page,
+    Handles HTTP requests to the main page,
     displaying the three most recently updated dishes.
-
-    Args:
-        request (HttpRequest): The incoming HTTP request.
-
-    Returns:
-        HttpResponse: A rendered HTML response containing
-        the index page with the dishes.
     """
-    dishes = Dish.objects.all().order_by("-updated_at")[:3] \
+    template_name = "kitchen/index.html"
+    model = Dish
+    context_object_name = "dishes"
+    queryset = Dish.objects.all().order_by("-updated_at")[:3] \
         .prefetch_related("ingredients")
-    return render(request, "kitchen/index.html", {"dishes": dishes})
+    paginate_by = 3
 
 
 @login_required
