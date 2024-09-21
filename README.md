@@ -1,7 +1,5 @@
 # Restaurant Kitchen Project
 
-Django project for managing cooks and dishes in a restaurant kitchen.
-
 ## Introduction
 This project is a Django project to represent a restaurant kitchen service.
 
