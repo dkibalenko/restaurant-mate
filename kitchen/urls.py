@@ -6,7 +6,7 @@ urlpatterns = [
     path("", views.index, name="main-page"),
     path("cooks/", views.CookListView.as_view(), name="cooks-page"),
     path(
-        "cooks/<slug:slug>",
+        "cooks/<slug:slug>/",
         views.CookDetailView.as_view(),
         name="cook-detail-page"
     ),
@@ -61,17 +61,17 @@ urlpatterns = [
         name="dish-types-page"
     ),
     path(
-        "dish_types/create",
+        "dish_types/create/",
         views.DishTypeCreateView.as_view(),
         name="dish-type-create"
     ),
     path(
-        "dish_types/<int:pk>/update",
+        "dish_types/<int:pk>/update/",
         views.DishTypeUpdateView.as_view(),
         name="dish-type-update"
     ),
     path(
-        "dish_types/<int:pk>/delete",
+        "dish_types/<int:pk>/delete/",
         views.DishTypeDeleteView.as_view(),
         name="dish-type-delete"
     ),
@@ -81,17 +81,17 @@ urlpatterns = [
         name="ingredients-page"
     ),
     path(
-        "ingredients/create",
+        "ingredients/create/",
         views.IngredientCreateView.as_view(),
         name="ingredient-create"
     ),
     path(
-        "ingredients/<int:pk>/update",
+        "ingredients/<int:pk>/update/",
         views.IngredientUpdateView.as_view(),
         name="ingredient-update"
     ),
     path(
-        "ingredients/<int:pk>/delete",
+        "ingredients/<int:pk>/delete/",
         views.IngredientDeleteView.as_view(),
         name="ingredient-delete"
     ),
