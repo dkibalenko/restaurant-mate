@@ -15,11 +15,12 @@ Restaurant Mate project is deployed to Render
 
 ## Getting Started
 ### Prerequisites
-- Python 3.12.0
+- Python 3.12.2
 - Django 5.0.7
 - Pillow 10.4.0
 
 ### Installation
+Python 3 must be preinstalled.
 
   ```bash
   git clone https://github.com/dkibalenko/restaurant-mate
