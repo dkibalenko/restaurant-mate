@@ -52,7 +52,7 @@ urlpatterns = [
     ),
     path(
         "dishes/<int:pk>/assign/",
-        views.toggle_assign_to_dish,
+        views.ToggleAssignToDishView.as_view(),
         name="toggle-dish-assign"
     ),
     path(

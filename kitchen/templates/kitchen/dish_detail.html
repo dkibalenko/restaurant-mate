@@ -41,17 +41,20 @@
         class="btn btn-delete">
           Delete
         </a>
-        {% if dish in user.dishes.all %}
-          <a href="{% url "kitchen:toggle-dish-assign" pk=dish.id %}" 
-          class="btn-unassign btn-update-assign">
-            Unassign me from this dish
-          </a>
-        {% else %}
-          <a href="{% url "kitchen:toggle-dish-assign" pk=dish.id %}" 
-          class="btn-assign btn-update-assign">
-            Assign me to this dish
-          </a>
-        {% endif %}
+        <form 
+        method="post" 
+        action="{% url "kitchen:toggle-dish-assign" pk=dish.id %}">
+          {% csrf_token %}
+          {% if dish in user.dishes.all %}
+            <button type="submit" class="btn-unassign btn-update-assign">
+              Unassign me from this dish
+            </button>
+          {% else %}
+            <button type="submit" class="btn-assign btn-update-assign">
+              Assign me to this dish
+            </button>
+          {% endif %}
+        </form>
       </div>
     </div>
   </section>

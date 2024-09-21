@@ -246,19 +246,16 @@ class IngredientDeleteView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy("kitchen:ingredients-page")
 
 
-@login_required
-def toggle_assign_to_dish(
-    request: HttpRequest,
-    pk: int
-) -> HttpResponseRedirect:
-    cook = get_user_model().objects.get(id=request.user.id)
-    if Dish.objects.get(id=pk) in cook.dishes.all():
-        cook.dishes.remove(pk)
-    else:
-        cook.dishes.add(pk)
-    return HttpResponseRedirect(
-        reverse_lazy(
-            "kitchen:dish-detail-page",
-            args=[pk]
+class ToggleAssignToDishView(generic.View):
+    def post(self, request: HttpRequest, pk: int) -> HttpResponseRedirect:
+        cook = get_user_model().objects.get(id=request.user.id)
+        if Dish.objects.get(id=pk) in cook.dishes.all():
+            cook.dishes.remove(pk)
+        else:
+            cook.dishes.add(pk)
+        return HttpResponseRedirect(
+            reverse_lazy(
+                "kitchen:dish-detail-page",
+                args=[pk]
+            )
         )
-    )
