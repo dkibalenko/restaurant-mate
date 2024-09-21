@@ -33,25 +33,18 @@ class IndexView(LoginRequiredMixin, generic.ListView):
     paginate_by = 3
 
 
-@login_required
-def custom_logout_view(request: HttpRequest) -> HttpResponse:
+class LogoutView(generic.View):
     """
     Handles HTTP POST requests to log out the current user and
     redirects them to the login page.
-    If the request is not a POST, it renders the logged out page.
-
-    Args:
-        request (HttpRequest): The incoming HTTP request.
-
-    Returns:
-        HttpResponse: A redirect response to the login page
-        if the request is a POST, otherwise a rendered HTML response
-        containing the logged out page.
+    If the request is GET, it renders the logged out page.
     """
-    if request.method == "POST":
+    def post(self, request: HttpRequest) -> HttpResponse:
         logout(request)
         return redirect("login")
-    return render(request, "registration/logged_out.html")
+
+    def get(self, request: HttpRequest) -> HttpResponse:
+        return render(request, "registration/logged_out.html")
 
 
 class CookListView(LoginRequiredMixin, generic.ListView):
