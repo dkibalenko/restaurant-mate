@@ -14,23 +14,6 @@ COOKS_LIST_URL = reverse("kitchen:cooks-page")
 class PrivateCookViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
-        cls.user = get_user_model().objects.create_user(
-            username="dennie",
-            first_name="Dennie",
-            last_name="Denniston",
-            profile_picture="dennie.jpg",
-            password="testpassword"
-        )
-
-        for user in users:
-            get_user_model().objects.create_user(
-                username=user["username"],
-                first_name=user["first_name"],
-                last_name=user["last_name"],
-                profile_picture=user["profile_picture"],
-                password=user["password"]
-            )
-
         cls.dish_type = DishType.objects.create(
             name="Main Course",
             description="Main course dishes"
@@ -58,7 +41,23 @@ class PrivateCookViewTest(TestCase):
         cls.pizza = Dish.objects.get(name="Pizza")
 
     def setUp(self) -> None:
+        self.user = get_user_model().objects.create_user(
+            username="dennie",
+            first_name="Dennie",
+            last_name="Denniston",
+            profile_picture="dennie.jpg",
+            password="testpassword"
+        )
         self.client.force_login(self.user)
+
+        for user in users:
+            get_user_model().objects.create_user(
+                username=user["username"],
+                first_name=user["first_name"],
+                last_name=user["last_name"],
+                profile_picture=user["profile_picture"],
+                password=user["password"]
+            )
         self.cooks_page_1 = self.client.get(COOKS_LIST_URL)
         self.cooks_page_2 = self.client.get(COOKS_LIST_URL, {"page": 2})
         self.all_cooks = get_user_model().objects.all()
@@ -137,6 +136,28 @@ class PrivateCookViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "dennie")
         self.assertEqual(int(response.context["page"]), 2)
+
+    def test_cook_update_get_success_url(self):
+        cook = get_user_model().objects.first()
+        response = self.client.post(
+            reverse("kitchen:cook-update", kwargs={"slug": cook.slug}),
+            data={
+                "username": cook.username,
+                "first_name": cook.first_name,
+                "last_name": "Bright",
+                "email": cook.email,
+                "years_of_experience": cook.years_of_experience,
+                "password1": "newpassword123",
+                "password2": "newpassword123"
+            }
+        )
+        cook.refresh_from_db()
+        self.assertEqual(cook.last_name, "Bright")
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(
+            response,
+            reverse("kitchen:cook-detail-page", kwargs={"slug": cook.slug})
+        )
 
     def test_toggle_assign_cook_to_existing_dish(self):
         self.user.dishes.add(self.pizza)
