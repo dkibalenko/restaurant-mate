@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.views import generic
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.db.models import QuerySet
 
 from .models import Dish, Cook, DishType, Ingredient
@@ -92,8 +92,13 @@ class CookUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Cook
     template_name = "kitchen/cook_form.html"
     form_class = CookUpdateForm
-    success_url = reverse_lazy("kitchen:cook-detail-page")
     context_object_name = "cook"
+
+    def get_success_url(self) -> str:
+        return reverse(
+            "kitchen:cook-detail-page", 
+            kwargs={"slug": self.object.slug}
+        )
 
 
 class CookDeleteView(LoginRequiredMixin, generic.DeleteView):

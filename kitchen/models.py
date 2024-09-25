@@ -42,10 +42,12 @@ class Cook(AbstractUser):
         return f"{self.username}: ({self.full_name()})"
 
     def save(self, *args, **kwargs) -> None:
-        if not self.slug:
+        if self.first_name and self.last_name:
             self.slug = slugify(f"{self.first_name}-{self.last_name}")
+        else:
+            self.slug = slugify(self.username)
         super().save(*args, **kwargs)
-
+        
     def get_absolute_url(self) -> str:
         return reverse("kitchen:cook-detail-page", kwargs={"slug": self.slug})
 
