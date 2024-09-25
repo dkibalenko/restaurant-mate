@@ -140,7 +140,7 @@ class PrivateCookViewTest(TestCase):
 
     def test_toggle_assign_cook_to_existing_dish(self):
         self.user.dishes.add(self.pizza)
-        self.client.get(reverse(
+        self.client.post(reverse(
             "kitchen:toggle-dish-assign",
             args=[self.pizza.pk])
         )
@@ -148,7 +148,7 @@ class PrivateCookViewTest(TestCase):
         self.assertNotIn(self.pizza, self.user.dishes.all())
 
     def test_toggle_assign_cook_to_new_dish(self):
-        self.client.get(reverse(
+        self.client.post(reverse(
             "kitchen:toggle-dish-assign",
             args=[self.pizza.pk])
         )
