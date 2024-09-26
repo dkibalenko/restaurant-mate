@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  Dish Types
+{% endblock %}
+
+{% block css_files %}
+  <link rel="stylesheet" href="{% static "kitchen/search_form.css" %}">
+  <link rel="stylesheet" href="{% static "kitchen/dish_type_list.css" %}">
+  <link rel="stylesheet" href="{% static "kitchen/pagination.css" %}">
+{% endblock css_files %}
+
+{% block content %}
+  <div class="header">
+    <h2>Dish Types</h2>
+    {% include "kitchen/includes/search_form.html" %}
+    <a href="{% url "kitchen:dish-type-create" %}" class="btn-create">
+      Create
+    </a>
+  </div>
+  <section class="container">
+    <div class="dish-types">
+      {% if dish_types %}
+        {% for dish_type in dish_types %}
+          <section class="dish-type">
+            <h2>{{ dish_type.name }}</h2>
+            {% if dish_type.description %}
+              <p>{{ dish_type.description }}</p>
+            {% else %}
+              <p>No description added.</p>
+            {% endif %}
+            <div class="actions">
+              <a href="{% url "kitchen:dish-type-update" dish_type.id %}" 
+              class="btn">
+                Update
+              </a>
+              <a href="{% url 'kitchen:dish-type-delete' dish_type.id %}" 
+              class="btn btn-delete">
+                Delete
+              </a>
+            </div>
+          </section>
+        {% endfor %}
+      {% else %}
+        <p>No dish types found.</p>
+      {% endif %}
+    </div>
+  </section>
+{% endblock content %}
+
+{% block pagination %}
+  {% include "kitchen/includes/pagination.html" %}
+{% endblock pagination %}

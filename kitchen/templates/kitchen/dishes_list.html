@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  Dishes
+{% endblock %}
+
+{% block css_files %}
+  <link rel="stylesheet" href="{% static "kitchen/search_form.css" %}">
+  <link rel="stylesheet" href="{% static "kitchen/dishes_list.css" %}">
+  <link rel="stylesheet" href="{% static "kitchen/pagination.css" %}">
+{% endblock %}
+
+{% block content %}
+  <section id="all-dishes">
+    <div class="header">
+      <h2>Dishes</h2>
+      {% include "kitchen/includes/search_form.html" %}
+      <a href="{% url "kitchen:dish-create" %}" class="btn-create">
+        Create
+      </a>
+    </div>
+    <div class="dish-cards">
+      {% for dish in dishes %}
+        <a href="{{ dish.get_absolute_url }}" class="dish-card">
+          {% include "kitchen/includes/dish_card.html" %}
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}
+
+{% block pagination %}
+  {% include "kitchen/includes/pagination.html" %}
+{% endblock pagination %}

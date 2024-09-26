@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  {{ dish.name }}
+{% endblock %}
+
+{% block css_files %}
+  <link rel="stylesheet" href="{% static "kitchen/dish_detail.css" %}">
+{% endblock %}
+
+{% block content %}
+  <section id="container">
+    <div class="dish-details">
+      <h1>{{ dish.name }}</h1>
+      <article>
+        <img src="{{ dish.image.url }}" alt="{{ dish.name }}">
+      </article>
+      <p>{{ dish.description }}</p>
+      <p><strong>Price:</strong> ${{ dish.price }}</p>
+      <p><strong>Type:</strong> {{ dish.dish_type.name }}</p>
+      <p><strong>Cooks:</strong>
+        {% for cook in dish.cooks.all %}
+          {{ cook.full_name }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+      </p>
+      <h3>Ingredients:</h3>
+      <ul>
+        {% for ingredient in dish.ingredients.all %}
+          <li>
+            {{ ingredient.name }}{% if not forloop.last %}, {% endif %}
+          </li>
+          {% endfor %}
+      </ul>
+
+      <div class="actions">
+        <a href="{% url "kitchen:dish-update" dish.id %}" class="btn">
+          Update
+        </a>
+        <a href="{% url "kitchen:dish-delete" dish.id %}" 
+        class="btn btn-delete">
+          Delete
+        </a>
+        <form 
+        method="post" 
+        action="{% url "kitchen:toggle-dish-assign" pk=dish.id %}">
+          {% csrf_token %}
+          {% if dish in user.dishes.all %}
+            <button type="submit" class="btn-unassign btn-update-assign">
+              Unassign me from this dish
+            </button>
+          {% else %}
+            <button type="submit" class="btn-assign btn-update-assign">
+              Assign me to this dish
+            </button>
+          {% endif %}
+        </form>
+      </div>
+    </div>
+  </section>
+{% endblock %}

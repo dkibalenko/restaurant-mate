@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css_files %}
+  <link rel="stylesheet" href="{% static "login.css" %}">
+{% endblock %}
+
+{% block content %}
+  <section id="login-section">
+    {% if form.errors %}
+      <p class="error-message">
+        Your username and password didn't match. Please try again.
+      </p>
+    {% endif %}
+
+    {% if next %}
+      {% if user.is_authenticated %}
+        <p class="info-message">
+          Your account doesn't have access to this page. 
+          To proceed, please login with an account that has access.
+        </p>
+      {% else %}
+        <p class="info-message">Please login to see this page.</p>
+      {% endif %}
+    {% endif %}
+
+    <form method="post" action="{% url 'login' %}" class="login-form">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="id_username">{{ form.username.label }}</label>
+        {{ form.username }}
+      </div>
+      <div class="form-group">
+        <label for="id_password">{{ form.password.label }}</label>
+        {{ form.password }}
+      </div>
+      <div class="form-actions">
+        <input type="submit" value="Login" class="btn">
+        <input type="hidden" name="next" value="{{ next }}">
+      </div>
+    </form>
+
+  </section>
+{% endblock %}

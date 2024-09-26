@@ -1,0 +1,45 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>
+    {% block title %}
+    {% endblock %} 
+  </title>
+  <link rel="stylesheet" href="{% static "app.css" %}">
+  {% block css_files %}
+  {% endblock %}
+</head>
+
+<body>
+  <header id="main-navigation">
+    <nav>
+      <span>
+        <a href="{% url "kitchen:main-page" %}">Home</a>
+        <a href="{% url "kitchen:cooks-page" %}">Cooks</a>
+        <a href="{% url "kitchen:dishes-page" %}">Dishes</a>
+        <a href="{% url "kitchen:dish-types-page" %}">Dish Types</a>
+        <a href="{% url "kitchen:ingredients-page" %}">Ingredients</a>
+      </span>
+    </nav>
+    <div>
+      {% if user.is_authenticated %}
+        <span class="user-info">Welcome, {{ user.username }}!</span>
+        <a href="{% url "logout" %}">Logout</a>
+      {% else %}
+        <a href="{% url 'login' %}">Login</a>
+      {% endif %}
+    </div>
+  </header>
+
+  {% block content %}
+  {% endblock %}
+
+  {% block pagination %}
+  {% endblock pagination %}
+</body>
+</html>

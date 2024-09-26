@@ -1,0 +1,76 @@
+#welcome {
+  background: url("images/restaurant4.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 6rem 12%;
+}
+
+#welcome header {
+  display: flex;
+  align-items: flex-start;
+  margin: 3rem auto;
+}
+
+#welcome img {
+  width: 8rem;
+  height: 8rem;
+  object-fit: cover;
+  object-position: top;
+  border: 5px solid white;
+  border-radius: 50%;
+  background-color: #ffe1bf;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+#welcome h2 {
+  font-size: 2.5rem;
+  margin: 1rem 0 0 2rem;
+  color: white;
+  width: 30rem;
+}
+
+#welcome p {
+  color: white;
+  font-size: 1.5rem;
+}
+
+#latest-dishes {
+  background-color: #f5f3ec;
+  padding: 2rem;
+  border: 5px solid #0C97AC;
+  border-radius: 12px;
+  width: 60rem;
+  margin: -4rem auto 2rem auto;
+  box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.4);
+}
+
+#latest-dishes h2 {
+  text-align: center;
+}
+
+#latest-dishes ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+}
+
+#latest-dishes li {
+  flex: 1;
+}
+
+#about {
+  text-align: center;
+  padding: 3rem;
+  background-color: #e48900;
+  margin-top: 5rem;
+}
+
+#about h2 {
+  font-size: 3rem;
+}
+
+#about p {
+  font-size: 1.5rem;
+  color: #353535;
+}

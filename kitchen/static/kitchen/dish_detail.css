@@ -1,0 +1,111 @@
+#container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 8rem auto 1rem auto;
+  padding: 2rem;
+  width: 70%;
+  max-width: 90rem;
+  border-radius: 16px;
+  background-color: #0C97AC;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.dish-details {
+  color: white;
+  flex: 1;
+}
+
+.dish-details h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: left;
+  gap: 10px;
+  margin-top: 2rem;
+}
+
+.actions .btn {
+  background-color: #0C97AC;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: solid 2.5px white;
+  width: 150px;
+}
+
+.actions .btn:hover {
+  background-color: #087889;
+}
+
+.actions .btn-delete {
+  background-color: #d9534f;
+}
+
+.actions .btn-delete:hover {
+  background-color: #c9302c;
+}
+
+.actions .btn-update-assign {
+  color: white;
+  padding: 12px 24px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 1rem;
+  border: solid 2.5px white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.actions .btn-assign {
+  background-color: #f69712;
+}
+
+.actions .btn-assign:hover {
+  background-color: #e58908;
+}
+
+.actions .btn-unassign {
+  background-color: #843cf1;
+}
+
+.actions .btn-unassign:hover {
+  background-color: #7727ef;
+}
+
+.dish-details p {
+  margin: 0.5rem 0;
+  color: white;
+  font-style: normal;
+}
+
+.dish-details article {
+  flex-shrink: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.dish-details article img {
+  width: 40rem;
+  height: auto;
+  border-radius: 12px;
+  border: 5px solid white;
+  margin-bottom: 1rem;
+}
+
+.dish-details ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}

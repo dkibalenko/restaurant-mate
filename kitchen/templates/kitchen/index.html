@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+	Kitchen Management System
+{% endblock %}
+
+{% block css_files %}
+  <link rel="stylesheet" href="{% static "kitchen/index.css" %}">
+  <link rel="stylesheet" href="{% static "kitchen/dish_preview.css" %}">
+{% endblock %}
+
+{% block content %}
+	<section id="welcome">
+    <header>
+      <img src="{% static "kitchen/images/restaurant-logo1.jpg" %}" 
+      alt="Dennie - The Owner of the Restaurant">
+      <h2 contentEditable role='textbox' aria-multiline='true'>
+        Dennie's Restaurant Kitchen Service
+      </h2>
+    </header>
+    <p>Welcome to Dennie's Restaurant Kitchen Management System!</p>
+  </section>
+
+  <section id="latest-dishes">
+    <h2>Our Latest Dishes</h2>
+      <ul>
+        {% for dish in dishes %}
+          {% include "kitchen/includes/dish_preview.html" %}
+        {% endfor %}
+      </ul>
+  </section>
+
+  <section id="about">
+    <h2>What We Do</h2>
+    <p>Having fun when cooking.</p>
+    <p>We cook with fun and manage it with ease.</p>
+  </section>
+
+{% endblock %}

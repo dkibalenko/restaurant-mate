@@ -1,0 +1,76 @@
+#all-dishes {
+  margin: 7rem auto;
+  width: 70%;
+}
+
+#all-dishes h2 {
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header h2 {
+  margin: 0;
+}
+
+.btn-create {
+  background-color: #0C97AC;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.btn-create:hover {
+  background-color: #087889;
+}
+
+.dish-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.dish-card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+  background-color: #f5f3ec;
+  padding: 2rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  transition: all 0.2s ease;
+}
+
+.dish-card:hover,
+.dish-card:active {
+  transform: scale(1.05);
+  background-color: #0C97AC;
+  color: white;
+}
+
+.dish-card img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8%;
+  margin-bottom: 1rem;
+}
+
+.dish-card h3 {
+  margin: 0.5rem 0;
+}
+
+.dish-card p {
+  margin: 0.5rem 0;
+  word-wrap: break-word;
+}

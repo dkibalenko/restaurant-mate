@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  {{ object|yesno:"Update,Create" }} Ingredient
+{% endblock %}
+
+{% block css_files %}
+  <link rel="stylesheet" href="{% static "kitchen/ingredient_form.css" %}">
+{% endblock %}
+
+{% block content %}
+  <section id="ingredient-form-section">
+    <h2>{{ object|yesno:"Update,Create" }} Ingredient</h2>
+    <form method="post" enctype="multipart/form-data" 
+    class="ingredient-form" novalidate>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div class="form-actions">
+        <button type="submit" class="btn">
+          {{ object|yesno:"Update,Create" }}
+        </button>
+        <a href="{% url "kitchen:ingredients-page"%}" class="btn btn-cancel">
+          Cancel
+        </a>
+      </div>
+    </form>
+  </section>
+{% endblock %}

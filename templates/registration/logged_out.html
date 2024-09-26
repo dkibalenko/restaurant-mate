@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css_files %}
+  <link rel="stylesheet" href="{% static "logged_out.css" %}">
+{% endblock %}
+
+{% block content %}
+  <section id="logout-section">
+    <h2>Logout</h2>
+    <p>Are you sure you want to logout?</p>
+    <form method="post" action="{% url 'logout' %}" class="logout-form">
+      {% csrf_token %}
+      <div class="form-actions">
+        <button type="submit" class="btn">Logout</button>
+        <a 
+        href="{{ request.session.previous_url|default:'{% url "kitchen:main-page" %}' }}" 
+        class="btn-cancel">
+          Cancel
+        </a>
+      </div>
+    </form>
+  </section>
+{% endblock %}

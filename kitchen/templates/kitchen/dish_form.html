@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  {{ object|yesno:"Update,Create" }} Dish
+{% endblock %}
+
+{% block css_files %}
+  <link rel="stylesheet" href="{% static "kitchen/dish_form.css" %}">
+{% endblock %}
+
+{% block content %}
+  <section id="dish-form-section">
+    <h2>{{ object|yesno:"Update,Create" }} Dish</h2>
+    <form method="post" enctype="multipart/form-data" 
+    class="dish-form" novalidate>
+
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      {{ form.name.errors }}
+
+      <div class="form-group">
+        {{ form.name.label_tag }} {{ form.name }}
+      </div>
+      {{ form.description.errors }}
+      <div class="form-group">
+        {{ form.description.label_tag }} {{ form.description }}
+      </div>
+      {{ form.price.errors }}
+      <div class="form-group">
+        {{ form.price.label_tag }} {{ form.price }}
+      </div>
+      {{ form.dish_type.errors }}
+      <div class="form-group">
+        {{ form.dish_type.label_tag }} {{ form.dish_type }}
+      </div>
+      {{ form.cooks.errors }}
+      <div class="form-group">
+        {{ form.cooks.label_tag }} {{ form.cooks }}
+      </div>
+      <div class="scrollable-checkboxes">
+        {{ form.ingredients.errors }}
+        {{ form.ingredients.label_tag }} {{ form.ingredients }}
+      </div>
+      {{ form.image.errors }}
+      <div class="form-group">
+        {{ form.image.label_tag }} {{ form.image }}
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn">
+          {{ object|yesno:"Update,Create" }}
+        </button>
+        {% if object %}
+          <a href="{{ dish.get_absolute_url }}" class="btn btn-cancel">
+            Cancel
+          </a>
+        {% else %}
+          <a href="{% url "kitchen:dishes-page" %}?page={{ page }}" 
+          class="btn btn-cancel">
+            Cancel
+          </a>
+        {% endif %}
+      </div>
+    </form>
+  </section>
+{% endblock %}

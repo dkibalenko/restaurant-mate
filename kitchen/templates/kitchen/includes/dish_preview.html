@@ -1,0 +1,16 @@
+<li>
+  <article class="dish">
+    <a href="{{ dish.get_absolute_url }}">
+      <img src="{{ dish.image.url }}" alt="{{ dish.name }}">
+      <div>
+        <h3>{{ dish.name }}</h3>
+        <p><strong>Ingredients:</strong>
+          {% for ingredient in dish.ingredients.all %}
+            {{ ingredient.name }}{% if not forloop.last %}, {% endif %}
+          {% endfor %}
+        </p>  
+        <p><strong>Price:</strong> {{ dish.price }}</p>
+      </div>
+    </a>
+  </article>
+</li>

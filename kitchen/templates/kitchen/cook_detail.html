@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  {{ cook.full_name }}
+{% endblock %}
+
+{% block css_files %}
+  <link rel="stylesheet" href="{% static "kitchen/cook_detail.css" %}">
+{% endblock %}
+
+{% block content %}
+  <section id="summary">
+    <div class="cook-details">
+      <h3>{{ cook.full_name }}</h3>
+      <p><strong>Username:</strong> {{ cook.username }}</p>
+      <p><strong>
+        Years of Experience:</strong> {{ cook.years_of_experience }}
+      </p>
+      <address>
+        <strong>
+          Email: 
+        </strong><a href="mailto:{{ cook.email }}">{{ cook.email }}</a>
+      </address>
+      <p><strong>Bio:</strong></p>
+      <p>{{ cook.bio|linebreaks }}</p>
+    </div>
+    <article>
+      <img src="
+      {% if cook.profile_picture %}{{ cook.profile_picture.url }}
+      {% else %}{% static "kitchen/images/default_profile_picture.jpg" %}
+      {% endif %}" alt="{{ cook.username }}">
+      <div class="actions">
+        <a href="{% url "kitchen:cook-update" cook.slug %}" class="btn">
+          Update
+        </a>
+        <a href="{% url "kitchen:cook-delete" cook.slug %}" 
+        class="btn btn-delete">
+          Delete
+        </a>
+      </div>
+    </article>
+  </section>
+
+  <section id="all-dishes">
+    <h2>Dishes by {{ cook.full_name }}</h2>
+    <div class="dish-cards">
+      {% for dish in cook.dishes.all %}
+        <a href="{{ dish.get_absolute_url }}" class="dish-card">
+          {% include "kitchen/includes/dish_card.html" %}
+        </a>
+      {% empty %}
+        <p id="no-dishes">No dishes found.</p>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}
