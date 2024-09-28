@@ -1,6 +1,10 @@
 **__pycache__
-uploads
-kitchen/static/kitchen/images
+uploads/dish_images/*
+uploads/profile_images/*
+!uploads/dish_images/
+!uploads/profile_images/
+!uploads/dish_images/.gitkeep
+!uploads/profile_images/.gitkeep
 .flake8
 
 # Created by https://www.toptal.com/developers/gitignore/api/python,django,visualstudiocode
