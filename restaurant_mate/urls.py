@@ -27,7 +27,6 @@ urlpatterns = [
     path("", include("kitchen.urls", namespace="kitchen")),
     path("accounts/logout/", LogoutView.as_view(), name="logout"),
     path("accounts/", include("django.contrib.auth.urls")),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \
-  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += debug_toolbar_urls()
