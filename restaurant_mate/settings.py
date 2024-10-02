@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "kitchen",
     "debug_toolbar",
+    "storages",
 ]
 
 MIDDLEWARE = [
@@ -124,13 +125,23 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+STATIC_ROOT = "staticfiles/"
 STATIC_URL = "static/"
 
-STATIC_ROOT = "staticfiles/"
+MEDIA_ROOT = BASE_DIR / "uploads"
+MEDIA_URL = "/files/"
+
+AWS_STORAGE_BUCKET_NAME = "restaurant-mate"
+AWS_S3_REGION_NAME = "eu-north-1"
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+AWS_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+
+# MEDIA_URL = f'https://{AWS_CUSTOM_DOMAIN}/'
 
 STORAGES = {
     "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
+        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
     },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
@@ -147,9 +158,6 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "kitchen.Cook"
-
-MEDIA_ROOT = BASE_DIR / "uploads"
-MEDIA_URL = "/files/"
 
 LOGIN_REDIRECT_URL = "/"
 
