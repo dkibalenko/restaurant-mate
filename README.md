@@ -9,7 +9,7 @@ This project is a Django project to represent a restaurant kitchen service.
 - Admin panel for advanced managing
 
 ## Check it out!
-Restaurant Mate project is deployed to Render
+[Restaurant Mate project is deployed to Render](https://restaurant-kitchen-mate-hcgj.onrender.com/)
 
 ## Getting Started
 ### Prerequisites
