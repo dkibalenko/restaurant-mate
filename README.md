@@ -11,6 +11,10 @@ This project is a Django project to represent a restaurant kitchen service.
 ## Check it out!
 [Restaurant Mate project is deployed to Render](https://restaurant-kitchen-mate-hcgj.onrender.com/)
 
+## Test user
+login: user
+password: user12345
+
 ## Getting Started
 ### Prerequisites
 - Python 3.12.2
