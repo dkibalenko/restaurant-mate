@@ -53,7 +53,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "kitchen.middleware.StorePreviousURLMiddleware",]
+    "kitchen.middleware.StorePreviousURLMiddleware",
+]
 
 ROOT_URLCONF = "restaurant_mate.urls"
 
