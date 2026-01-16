@@ -14,10 +14,10 @@ password: user12345
 ```
 
 ## 📌 Features
-### 👨‍🍳 User & Authentication
+### 👨‍🍳 User(Cook) & Authentication
 - Custom Cook model extending AbstractUser
 - Automatic unique slug generation for profile URLs
-- Profile pictures with validation
+- Profile pictures upload with validation
 - Login, logout, and registration
 - Permissions integrated with Django Admin
 
@@ -109,8 +109,6 @@ Visit the app at:
 This project uses ImageField for:
 - Cook profile pictures
 - Dish images
-
-Make sure MEDIA_URL and MEDIA_ROOT are configured (already done in project settings).
 
 ## Searching
 Each list view includes a search bar:
